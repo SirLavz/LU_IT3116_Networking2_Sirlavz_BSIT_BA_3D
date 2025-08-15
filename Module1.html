@@ -1,0 +1,231 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 1: Network Management and Administration</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom styles for Inter font and general aesthetics */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* Light gray background */
+            color: #333; /* Darker text */
+        }
+        .container {
+            max-width: 100%; /* Fluid width */
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+        .lesson-header {
+            background-color: #e0f2fe; /* Light blue for lesson headers */
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        .lesson-icon {
+            margin-right: 10px;
+            color: #007bff; /* Blue icon color */
+        }
+        .example-block {
+            background-color: #f8f9fa; /* Lighter background for examples */
+            border-left: 5px solid #007bff; /* Blue left border */
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6 md:p-8">
+    <div class="container bg-white rounded-xl shadow-lg p-6 sm:p-8 md:p-10 lg:p-12">
+        <h1 class="text-3xl sm:text-4xl font-bold text-center text-blue-800 mb-6">Module 1: Network Management and Administration</h1>
+
+        <!-- Introduction -->
+        <div class="card">
+            <h2 class="text-2xl font-semibold text-blue-700 mb-4">Introduction <i class="fas fa-info-circle ml-2"></i></h2>
+            <p class="text-gray-700 leading-relaxed">
+                Welcome to Module 1! In this module, we will explore the fundamental concepts of network management and administration.
+                Understanding how networks operate, their components, and how to manage them is crucial in today's interconnected world.
+                We'll cover everything from the basic definition of a computer network to more complex topics like network topology and common issues in telecommunications.
+            </p>
+        </div>
+
+        <!-- Learning Outcomes -->
+        <div class="card">
+            <h2 class="text-2xl font-semibold text-blue-700 mb-4">Learning Outcomes <i class="fas fa-check-circle ml-2"></i></h2>
+            <ul class="list-disc list-inside text-gray-700 space-y-2">
+                <li>Identify key telecommunication issues in the Philippines.</li>
+                <li>Define and explain the basic concepts of networks.</li>
+                <li>Understand what constitutes a computer network.</li>
+                <li>Grasp the concept of network edge.</li>
+                <li>Familiarize with different network topologies.</li>
+                <li>Identify and describe various network components.</li>
+            </ul>
+        </div>
+
+        <!-- Lesson 1: Telecommunication Issues in the Philippines -->
+        <div class="card">
+            <div class="lesson-header">
+                <i class="fas fa-globe lesson-icon"></i>
+                <h3 class="text-xl sm:text-2xl text-blue-900">Lesson 1: Telecommunication Issues in the Philippines</h3>
+            </div>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                This lesson discusses common challenges faced in the telecommunications sector within the Philippines. These issues often include
+                internet speed and accessibility, infrastructure development, regulatory challenges, and the digital divide between urban and rural areas.
+            </p>
+            <div class="example-block">
+                <p class="font-semibold text-blue-800 mb-2">Example:</p>
+                <p class="text-gray-800">
+                    A common issue is the "last mile" problem, where getting high-speed internet to remote or geographically challenging areas
+                    is difficult and costly, leading to slower speeds or no access for residents in those regions.</p>
+           </div>
+
+        <!-- Lesson 2: Understanding Networks -->
+        <div class="card">
+            <div class="lesson-header">
+                <i class="fas fa-project-diagram lesson-icon"></i>
+                <h3 class="text-xl sm:text-2xl text-blue-900">Lesson 2: Understanding Networks</h3>
+            </div>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                At its core, a network is a collection of interconnected devices that can share resources and information. These devices
+                can be computers, servers, printers, mobile phones, and more. The purpose of a network is to facilitate communication and data exchange.
+            </p>
+            <div class="example-block">
+                <p class="font-semibold text-blue-800 mb-2">Example:</p>
+                <p class="text-gray-800">
+                    Your home Wi-Fi setup is a simple network. Your laptop, smartphone, and smart TV are all connected to your router,
+                    allowing them to access the internet and sometimes share files with each other (e.g., streaming from your phone to your TV).
+                </p>
+            </div>
+        </div>
+
+        <!-- Lesson 3: What is a Computer Network -->
+        <div class="card">
+            <div class="lesson-header">
+                <i class="fas fa-desktop lesson-icon"></i>
+                <h3 class="text-xl sm:text-2xl text-blue-900">Lesson 3: What is a Computer Network</h3>
+            </div>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                A computer network specifically refers to two or more computers connected together to share resources, such as files,
+                printers, or internet access. It enables electronic communication among devices and users.
+            </p>
+            <div class="example-block">
+                <p class="font-semibold text-blue-800 mb-2">Example:</p>
+                <p class="text-gray-800">
+                    In an office, employees on different computers can print to a single shared printer connected to the network.
+                    They can also access shared documents stored on a central server, collaborating efficiently.
+                </p>
+            </div>
+        </div>
+
+        <!-- Lesson 4: Network Edge -->
+        <div class="card">
+            <div class="lesson-header">
+                <i class="fas fa-server lesson-icon"></i>
+                <h3 class="text-xl sm:text-2xl text-blue-900">Lesson 4: Network Edge</h3>
+            </div>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                The "network edge" refers to the parts of a computer network that connect to end devices, such as your laptop,
+                smartphone, or smart home devices. It's where applications and services are consumed by users.
+                This contrasts with the "network core," which consists of high-speed routers and links that transfer data over long distances.
+            </p>
+            <div class="example-block">
+                <p class="font-semibold text-blue-800 mb-2">Example:</p>
+                <p class="text-gray-800">
+                    When you access a website on your phone, your phone is at the "edge" of the network. The Wi-Fi router you're
+                    connected to and the cellular tower are also part of the edge infrastructure that connects you to the internet's core.
+                </p>
+            </div>
+        </div>
+
+        <!-- Lesson 5: Network Topology -->
+        <div class="card">
+            <div class="lesson-header">
+                <i class="fas fa-code-branch lesson-icon"></i>
+                <h3 class="text-xl sm:text-2xl text-blue-900">Lesson 5: Network Topology</h3>
+            </div>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Network topology describes the physical or logical arrangement of connected devices in a network.
+                Common topologies include Bus, Star, Ring, Mesh, and Tree. Each has its own advantages and disadvantages in terms of cost,
+                reliability, and ease of management.
+            </p>
+            <div class="example-block">
+                <p class="font-semibold text-blue-800 mb-2">Example:</p>
+                <p class="text-gray-800">
+                    In a <strong>Star Topology</strong>, all devices are connected to a central hub or switch. If the central device fails,
+                    the entire network goes down. However, it's easy to add new devices and isolate issues. Most home and small office networks use a star topology.
+                </p>
+                <img src="https://placehold.co/400x200/ADD8E6/000000?text=Star+Topology+Example" alt="Star Topology Example" class="w-full h-auto rounded-md mt-3">
+            </div>
+        </div>
+
+        <!-- Lesson 6: Network Components -->
+        <div class="card">
+            <div class="lesson-header">
+                <i class="fas fa-cogs lesson-icon"></i>
+                <h3 class="text-xl sm:text-2xl text-blue-900">Lesson 6: Network Components</h3>
+            </div>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Networks are built using various hardware and software components. Key hardware components include routers, switches,
+                hubs, cables, and network interface cards (NICs). Software components include operating systems, protocols (like TCP/IP),
+                and network management tools.
+            </p>
+            <div class="example-block">
+                <p class="font-semibold text-blue-800 mb-2">Examples:</p>
+                <ul class="list-disc list-inside text-gray-800 space-y-1">
+                    <li><strong>Router:</strong> A device that forwards data packets between computer networks. It directs traffic on the internet.</li>
+                    <li><strong>Switch:</strong> Connects devices in a network and forwards data only to the device that needs it, improving efficiency.</li>
+                    <li><strong>Ethernet Cable:</strong> Physical cable used to connect devices in a wired network.</li>
+                    <li><strong>Network Interface Card (NIC):</strong> A hardware component that connects a computer to a computer network.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="card">
+            <h2 class="text-2xl font-semibold text-blue-700 mb-4">Summary <i class="fas fa-book-open ml-2"></i></h2>
+            <p class="text-gray-700 leading-relaxed">
+                In this module, we covered the basics of network management and administration, including the challenges in telecommunications,
+                what defines a network and a computer network, the concept of the network edge, different network topologies,
+                and the essential hardware and software components that make up a network. This foundational knowledge is crucial
+                for understanding more advanced networking concepts.
+            </p>
+        </div>
+
+        <!-- Assessment Task -->
+        <div class="card">
+            <h2 class="text-2xl font-semibold text-blue-700 mb-4">Assessment Task <i class="fas fa-edit ml-2"></i></h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                Please answer the following questions based on the module content:
+            </p>
+            <ol class="list-decimal list-inside text-gray-700 space-y-2">
+                <li>Describe at least three significant telecommunication issues currently affecting the Philippines.</li>
+                <li>Explain the difference between a general "network" and a "computer network," providing an example for each.</li>
+                <li>What is the "network edge," and how does it differ from the "network core"?</li>
+                <li>Draw and briefly explain two different network topologies (e.g., Star and Bus), listing one advantage and one disadvantage of each.</li>
+                <li>List and describe four essential hardware components of a computer network.</li>
+            </ol>
+        </div>
+
+       
+       
+    </div>
+        <!-- Footer -->
+    <footer class="footer">
+      <center><p>&copy; 2025 | Ronald T. Lava, MSIT | Laguna University</p>
+      </center></footer>
+</body>
+</html>
