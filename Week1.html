@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Networking 2 - Week 1: Orientation and Network Fundamentals</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        }
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 1rem;
+        }
+        h1 { font-size: 2.5rem; margin-top: 0; }
+        h2 { font-size: 2rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; margin-top: 1.5rem; }
+        h3 { font-size: 1.5rem; margin-top: 1.25rem; }
+        h4 { font-size: 1.25rem; color: #2d3748; margin-top: 1rem; }
+        ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        ol {
+            list-style-type: decimal;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        b, strong {
+            font-weight: 700;
+            color: #3182ce; /* A nice blue for emphasis */
+        }
+        hr {
+            border: 0;
+            height: 1px;
+            background-color: #cbd5e1;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body class="p-4">
+    <div class="container">
+        <h1 class="text-center mb-6">Week 1: Orientation and Network Fundamentals</h1>
+
+        <p class="text-gray-700 mb-6">
+            Welcome to Networking 2! This first week is all about getting acquainted with the course, understanding the broader context of Laguna University, and gently stepping into the foundational concepts of computer networking.
+        </p>
+
+        <hr>
+
+        <h2 class="text-xl">Part 1: Course and Institutional Orientation</h2>
+        <p class="text-gray-700 mb-4">
+            The primary goal of this initial session is to ensure everyone is on the same page regarding expectations, policies, and the overall learning environment.
+        </p>
+
+        <h4 class="text-lg">1. Laguna University Vision, Mission, Goals, and Objectives</h4>
+        <p class="text-gray-700 mb-2">
+            It's important to understand the guiding principles of our institution. We'll discuss:
+        </p>
+        <ul class="list-disc ml-6 mb-4 text-gray-700">
+            <li><strong>University Vision:</strong> What Laguna University aspires to be in the long term. This is the big picture, the ultimate dream for the institution and its graduates.</li>
+            <li><strong>University Mission:</strong> How Laguna University plans to achieve its vision. This outlines the core purpose and the actions taken to fulfill the vision.</li>
+            <li><strong>Goals and Objectives:</strong> The specific, measurable steps the university and, more specifically, the College of Computing Studies aim to achieve. These provide a roadmap for our collective efforts.</li>
+        </ul>
+        <p class="text-gray-700 mb-4">
+            We'll reflect on how these institutional goals relate to your personal academic journey and career aspirations in the field of computing.
+        </p>
+
+        <h4 class="text-lg">2. Classroom Policies</h4>
+        <p class="text-gray-700 mb-2">
+            To ensure a productive and respectful learning environment, we'll review the classroom policies. This will cover aspects such as:
+        </p>
+        <ul class="list-disc ml-6 mb-4 text-gray-700">
+            <li>Attendance and participation expectations.</li>
+            <li>Submission guidelines for assignments and activities.</li>
+            <li>Rules for online meetings (if applicable, given the context of "online meetings when called for").</li>
+            <li>Academic integrity and conduct.</li>
+        </ul>
+        <p class="text-gray-700 mb-4">
+            Understanding these policies from the start will help prevent misunderstandings and ensure a smooth semester.
+        </p>
+
+        <h4 class="text-lg">3. Values Integration: Respect, Love, Humility</h4>
+        <p class="text-gray-700 mb-2">
+            Laguna University emphasizes core values, and in this course, we'll specifically touch upon <strong>respect, love, and humility</strong>. We'll discuss how these values are not just abstract concepts but are vital in the field of IT and networking. For example:
+        </p>
+        <ul class="list-disc ml-6 mb-4 text-gray-700">
+            <li><strong>Respect:</strong> Respect for intellectual property, user privacy, and diverse perspectives in a collaborative environment.</li>
+            <li><strong>Love (Compassion):</strong> A commitment to ethical practices that benefit society, and empathy for users and colleagues.</li>
+            <li><strong>Humility:</strong> The willingness to learn, adapt, admit mistakes, and continuously improve in a rapidly evolving technological landscape.</li>
+        </ul>
+        <p class="text-gray-700 mb-4">
+            We'll consider how these values translate into professional behavior and responsible computing practices.
+        </p>
+
+        <h4 class="text-lg">4. Interactive Session: Reflection and Q&A</h4>
+        <p class="text-gray-700 mb-2">
+            This segment is crucial for active learning and clarification.
+        </p>
+        <ul class="list-disc ml-6 mb-4 text-gray-700">
+            <li><strong>Reflection:</strong> You'll be encouraged to reflect on how the university's vision and mission align with your personal goals.</li>
+            <li><strong>Recitation/Discussion:</strong> We'll have an open discussion, either online (e.g., via Edmodo or Google Meet App) or face-to-face, to share thoughts and insights.</li>
+            <li><strong>Question and Answer:</strong> This is your opportunity to ask any questions about the course, the university, or any initial thoughts on networking. No question is too small!</li>
+        </ul>
+
+        <hr>
+
+        <h2 class="text-xl">Part 2: Introduction to Computer Networks</h2>
+        <p class="text-gray-700 mb-4">
+            While the core focus of Week 1 is orientation, we'll also begin our journey into the technical aspects by introducing <strong>Computer Networks</strong>. This will be a high-level overview to set the stage for deeper dives in subsequent weeks.
+        </p>
+
+        <h4 class="text-lg">What is a Computer Network?</h4>
+        <p class="text-gray-700 mb-4">
+            We'll start with the fundamental definition: a computer network is a group of interconnected computers and other hardware devices that allows them to communicate with each other and share resources.
+        </p>
+
+        <h4 class="text-lg">Why are Networks Important?</h4>
+        <p class="text-gray-700 mb-2">
+            We'll discuss the omnipresence of networks in modern life and their critical role in:
+        </p>
+        <ul class="list-disc ml-6 mb-4 text-gray-700">
+            <li><strong>Communication:</strong> Email, instant messaging, video calls.</li>
+            <li><strong>Resource Sharing:</strong> Printers, files, internet access.</li>
+            <li><strong>Information Access:</strong> The World Wide Web, databases.</li>
+            <li><strong>Collaboration:</strong> Working together on projects from different locations.</li>
+        </ul>
+        <p class="text-gray-700 mb-4">
+            This foundational understanding will highlight the significance of the "Networking 2" course and its practical applications.
+        </p>
+
+        <hr>
+
+        <h2 class="text-xl">Learning Activities for Week 1:</h2>
+        <ul class="list-disc ml-6 mb-4 text-gray-700">
+            <li><strong>Module Discussion:</strong> Engage with the provided module content on the university's and college's vision/mission/goals, classroom policies, and the initial concepts of computer networks.</li>
+            <li><strong>Reflection Exercise:</strong> Complete a short written or verbal reflection on how university values apply to the IT field.</li>
+            <li><strong>Q&A Session:</strong> Participate actively in the question and answer session, clarifying any doubts.</li>
+        </ul>
+        <p class="text-gray-700 mb-4">
+            Remember to bring your curiosity and any questions you might have to our first session!
+        </p>
+    </div>
+</body>
+</html>
