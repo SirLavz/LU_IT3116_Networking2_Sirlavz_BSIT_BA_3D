@@ -1,0 +1,1081 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Networking 2 - Paginated Quiz</title>
+    <style>
+        :root {
+            --primary-color: #007BFF;
+            --secondary-color: #6c757d;
+            --background-color: #f8f9fa;
+            --card-background: #ffffff;
+            --text-color: #343a40;
+            --correct-color: #28a745;
+            --incorrect-color: #dc3545;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .quiz-container {
+            width: 100%;
+            max-width: 900px;
+            background-color: var(--card-background);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .registration-form, .quiz-section {
+            margin-bottom: 40px;
+        }
+        
+        .registration-form h2 {
+            text-align: center;
+            color: var(--primary-color);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: var(--border-radius);
+            box-sizing: border-box;
+        }
+
+        .quiz-card {
+            background-color: #e9ecef;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .quiz-card p {
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .options-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .option-item:hover {
+            background-color: #dee2e6;
+        }
+
+        .option-item input[type="radio"] {
+            margin-right: 15px;
+            accent-color: var(--primary-color);
+        }
+
+        .option-item label {
+            flex-grow: 1;
+            cursor: pointer;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        button:disabled {
+            background-color: #cccccc; /* Greyed out color */
+            cursor: not-allowed;
+        }
+
+        #results {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            background-color: #e9ecef;
+            display: none; /* Hidden by default */
+        }
+
+        .correct-answer {
+            background-color: #d4edda;
+            border: 1px solid var(--correct-color);
+        }
+        
+        .correct-answer label {
+            color: var(--correct-color);
+        }
+
+        .incorrect-answer {
+            background-color: #f8d7da;
+            border: 1px solid var(--incorrect-color);
+        }
+        
+        .incorrect-answer label {
+            color: var(--incorrect-color);
+        }
+
+        .certificate-container {
+            display: none;
+            max-width: 700px;
+            margin: auto;
+            border: 5px solid #007BFF;
+            padding: 30px;
+            text-align: center;
+            background: linear-gradient(135deg, #f0f8ff, #e6f2ff);
+            border-radius: 15px;
+        }
+
+        .certificate-header {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #0056b3;
+            margin-bottom: 10px;
+        }
+
+        .certificate-subheader {
+            font-size: 1.5em;
+            color: #495057;
+            margin-bottom: 20px;
+        }
+
+        .certificate-body p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        .certificate-name {
+            font-size: 2.2em;
+            color: #343a40;
+            font-weight: 600;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .certificate-details {
+            font-size: 1.1em;
+            margin-top: 5px;
+        }
+
+        .certificate-score {
+            font-size: 1.8em;
+            color: #28a745;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        #quizForm, #results {
+            display: none;
+        }
+        
+        .timer-container {
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .pagination-controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            gap: 10px; /* Space between buttons */
+        }
+
+        .pagination-controls button {
+            width: 48%; /* Almost half width for two buttons */
+            padding: 10px 15px;
+            font-size: 1em;
+            margin-top: 0; /* Override default button margin-top */
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>IT 3116 - Networking Prelim Pre-Test</h1>
+
+        <div id="registration-section" class="registration-form">
+            <h2>Registration</h2>
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="course">Course:</label>
+                    <input type="text" id="course" required>
+                </div>
+                <div class="form-group">
+                    <label for="year">Year:</label>
+                    <input type="text" id="year" required>
+                </div>
+                <div class="form-group">
+                    <label for="section">Section:</label>
+                    <input type="text" id="section" required>
+                </div>
+                <button type="submit">Start Quiz</button>
+            </form>
+        </div>
+
+        <div id="quizForm" class="quiz-section">
+            <div class="timer-container">Time Left: <span id="timer">30:00</span></div>
+            <form id="quizFormContent">
+                <!-- Questions will be dynamically inserted here by JavaScript -->
+            </form>
+            <div class="pagination-controls">
+                <button id="prevBtn" type="button">Previous</button>
+                <button id="nextBtn" type="button">Next</button>
+            </div>
+            <button id="submitQuizBtn" type="submit">Submit Answers</button>
+        </div>
+
+        <div id="certificate" class="certificate-container">
+            <div class="certificate-header">Certificate of Achievement</div>
+            <div class="certificate-subheader">This certifies that</div>
+            <div class="certificate-name" id="cert-name"></div>
+            <div class="certificate-body">
+                <p>has successfully completed the IT 3116-Networking 2 - PRE-TEST.</p>
+                <div class="certificate-details">
+                    <p>Course: <span id="cert-course"></span></p>
+                    <p>Year: <span id="cert-year"></span></p>
+                    <p>Section: <span id="cert-section"></span></p>
+                     <p>Signature: RONALD T. LAVA, MSIT</p>
+                </div>
+            </div>
+            <div class="certificate-score">Final Score: <span id="cert-score"></span> / 50</div>
+
+            <button id="downloadCertBtn">Download Certificate</button>
+        </div>
+    </div>
+    
+    <script>
+        const quizData = [
+            {
+                question: "1. What is the smallest type of network?",
+                options: [
+                    "Local Area Network (LAN)",
+                    "Personal Area Network (PAN)",
+                    "Metropolitan Area Network (MAN)",
+                    "Wide Area Network (WAN)"
+                ],
+                correctAnswer: "Personal Area Network (PAN)"
+            },
+            {
+                question: "2. Which network topology uses a single cable that connects all the nodes?",
+                options: [
+                    "Star Topology",
+                    "Ring Topology",
+                    "Bus Topology",
+                    "Mesh Topology"
+                ],
+                correctAnswer: "Bus Topology"
+            },
+            {
+                question: "3. The OSI model has how many layers?",
+                options: [
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                ],
+                correctAnswer: "7"
+            },
+            {
+                question: "4. Which layer of the OSI model is responsible for end-to-end delivery between hosts?",
+                options: [
+                    "Transport Layer",
+                    "Network Layer",
+                    "Data Link Layer",
+                    "Application Layer"
+                ],
+                correctAnswer: "Transport Layer"
+            },
+            {
+                question: "5. What is the name for a network that connects two communicating devices through a transmission media?",
+                options: [
+                    "Switched WAN",
+                    "Point-to-Point WAN",
+                    "MAN",
+                    "LAN"
+                ],
+                correctAnswer: "Point-to-Point WAN"
+            },
+            {
+                question: "6. Which of the following is NOT a disadvantage of using computer networks mentioned in the document?",
+                options: [
+                    "High initial hardware and software costs",
+                    "Data is at risk if proper security precautions are not taken",
+                    "Requires time for constant administration",
+                    "Increased need for physical space"
+                ],
+                correctAnswer: "Increased need for physical space"
+            },
+            {
+                question: "7. Which type of fiber allows multiple modes of light to propagate, potentially causing modal dispersion?",
+                options: [
+                    "Single-mode fiber",
+                    "Dual-mode fiber",
+                    "Multimode fiber",
+                    "Hybrid-mode fiber"
+                ],
+                correctAnswer: "Multimode fiber"
+            },
+            {
+                question: "8. What is the maximum cable length for UTP cable?",
+                options: [
+                    "10 meters",
+                    "100 meters",
+                    "1000 meters",
+                    "1 kilometer"
+                ],
+                correctAnswer: "100 meters"
+            },
+            {
+                question: "9. What does the acronym \"ICT\" stand for in the context of the document?",
+                options: [
+                    "Information and Computing Technology",
+                    "Integrated Communication and Telephony",
+                    "Information and Communications Technology",
+                    "Internet and Cellular Telecommunications"
+                ],
+                correctAnswer: "Information and Communications Technology"
+            },
+            {
+                question: "10. What is a computer network, according to the document?",
+                options: [
+                    "A single computer connected to the internet",
+                    "A set of devices connected by communication links",
+                    "A collection of servers in a data center",
+                    "A single-user workstation"
+                ],
+                correctAnswer: "A set of devices connected by communication links"
+            },
+            {
+                question: "11. Which layer of the OSI model is responsible for logical addressing?",
+                options: [
+                    "Physical Layer",
+                    "Data Link Layer",
+                    "Network Layer",
+                    "Transport Layer"
+                ],
+                correctAnswer: "Network Layer"
+            },
+            {
+                question: "12. What does a \"9/125\" marking on a single-mode fiber's jacket indicate?",
+                options: [
+                    "9 feet of cable per 125 meters",
+                    "9 microns for the core and 125 microns for the cladding",
+                    "9 nodes for every 125 devices",
+                    "9 Gigabits per second transmission over 125 meters"
+                ],
+                correctAnswer: "9 microns for the core and 125 microns for the cladding"
+            },
+            {
+                question: "13. Which of the following is a drawback of shielded twisted-pair (STP) cable compared to unshielded twisted-pair (UTP)?",
+                options: [
+                    "It is less expensive to install.",
+                    "It is less susceptible to noise if improperly installed.",
+                    "It is more difficult to install because it needs to be grounded.",
+                    "It has a shorter maximum cable length."
+                ],
+                correctAnswer: "It is more difficult to install because it needs to be grounded."
+            },
+            {
+                question: "14. A Metropolitan Area Network (MAN) is formed by connecting what?",
+                options: [
+                    "Multiple PANs",
+                    "Multiple LANs",
+                    "Multiple WANs",
+                    "Multiple WLANs"
+                ],
+                correctAnswer: "Multiple LANs"
+            },
+            {
+                question: "15. What is the primary function of the Presentation Layer in the OSI model?",
+                options: [
+                    "Managing sessions between remote hosts",
+                    "Providing an interface to the user",
+                    "Handling end-to-end delivery",
+                    "Defining how data is presented in the native format of the host"
+                ],
+                correctAnswer: "Defining how data is presented in the native format of the host"
+            },
+            {
+                question: "16. Which of the following is an example of a Personal Area Network (PAN) device?",
+                options: [
+                    "A building's network of computers",
+                    "A school's internet connection",
+                    "A Bluetooth-enabled headset",
+                    "A city-wide network of traffic lights"
+                ],
+                correctAnswer: "A Bluetooth-enabled headset"
+            },
+            {
+                question: "17. What is a \"switched WAN\" used for today?",
+                options: [
+                    "Connecting two communicating devices through a transmission media.",
+                    "Connecting multiple LANs within a single city.",
+                    "Providing internet access for mobile users.",
+                    "As the backbone of global communication."
+                ],
+                correctAnswer: "As the backbone of global communication."
+            },
+            {
+                question: "18. What are \"hosts\" or \"end systems\" in Internet jargon?",
+                options: [
+                    "Traditional desktop PCs only",
+                    "Servers that store and transmit information",
+                    "All devices connected to the Internet, including non-traditional ones",
+                    "Communication links that connect devices"
+                ],
+                correctAnswer: "All devices connected to the Internet, including non-traditional ones"
+            },
+            {
+                question: "19. What is the name of the access network that physically connects an end system to the first router on a path to another distant end system?",
+                options: [
+                    "Internetwork",
+                    "Network Edge",
+                    "Access Network",
+                    "Network Core"
+                ],
+                correctAnswer: "Access Network"
+            },
+            {
+                question: "20. Which Ethernet standard enables data transmission at 100 megabits per second?",
+                options: [
+                    "Fast Ethernet",
+                    "Gigabit Ethernet",
+                    "10 Base T",
+                    "1000 BASE-T"
+                ],
+                correctAnswer: "Fast Ethernet"
+            },
+            {
+                question: "21. What is the purpose of a subnet mask?",
+                options: [
+                    "To translate a domain name into an IP address.",
+                    "To identify the network and host portions of an IP address.",
+                    "To improve security by hiding IP addresses.",
+                    "To encrypt data before transmission."
+                ],
+                correctAnswer: "To identify the network and host portions of an IP address."
+            },
+            {
+                question: "22. Which network topology is described as having a unique design where each computer connects to every other computer on the network?",
+                options: [
+                    "Bus",
+                    "Star",
+                    "Ring",
+                    "Mesh"
+                ],
+                correctAnswer: "Mesh"
+            },
+            {
+                question: "23. What is the primary difference between the TCP/IP and OSI models, according to the document?",
+                options: [
+                    "TCP/IP has more layers than OSI.",
+                    "TCP/IP follows a vertical approach, while OSI follows a horizontal approach.",
+                    "TCP/IP protocols were developed before the model, while the OSI model was developed before its protocols.",
+                    "TCP/IP is only for local networks, while OSI is for wide area networks."
+                ],
+                correctAnswer: "TCP/IP protocols were developed before the model, while the OSI model was developed before its protocols."
+            },
+            {
+                question: "24. The Data Link Layer is concerned with which of the following?",
+                options: [
+                    "Logical addressing",
+                    "End-to-end delivery",
+                    "Physical addressing and network topology",
+                    "Providing an interface to the user"
+                ],
+                correctAnswer: "Physical addressing and network topology"
+            },
+            {
+                question: "25. Which of the following is NOT a benefit of using optical fiber media?",
+                options: [
+                    "Not susceptible to electromagnetic interference",
+                    "Much greater bandwidth capabilities",
+                    "Very little signal attenuation",
+                    "Lower cost per node compared to UTP"
+                ],
+                correctAnswer: "Lower cost per node compared to UTP"
+            },
+            {
+                question: "26. What does a \"node\" in a computer network refer to?",
+                options: [
+                    "Only a computer",
+                    "Only a printer",
+                    "A computer, printer, or any device capable of sending/receiving data",
+                    "The communication links"
+                ],
+                correctAnswer: "A computer, printer, or any device capable of sending/receiving data"
+            },
+            {
+                question: "27. What is the name of the device that permits high-speed internet access in a home or office and is used to set up a wireless network?",
+                options: [
+                    "Wireless Network Adapter",
+                    "Wireless Client",
+                    "Wireless Router",
+                    "Wireless Repeater"
+                ],
+                correctAnswer: "Wireless Router"
+            },
+            {
+                question: "28. Which layer of the OSI model is responsible for reading and writing data from and onto the line?",
+                options: [
+                    "Physical Layer",
+                    "Data Link Layer",
+                    "Network Layer",
+                    "Transport Layer"
+                ],
+                correctAnswer: "Data Link Layer"
+            },
+            {
+                question: "29. What is a common protocol of the TCP/IP suite that handles the transmission of files between computers?",
+                options: [
+                    "HTTP",
+                    "HTTPS",
+                    "FTP",
+                    "Telnet"
+                ],
+                correctAnswer: "FTP"
+            },
+            {
+                question: "30. Which access network is typically obtained from the same local telephone company that provides wired phone access?",
+                options: [
+                    "Hybrid fiber-coaxial",
+                    "DSL",
+                    "FTTH",
+                    "Ethernet"
+                ],
+                correctAnswer: "DSL"
+            },
+            {
+                question: "31. What are the two most prevalent types of broadband residential access today, according to the document?",
+                options: [
+                    "Satellite and cellular",
+                    "DSL and cable",
+                    "Fiber and wireless",
+                    "Dial-up and ISDN"
+                ],
+                correctAnswer: "DSL and cable"
+            },
+            {
+                question: "32. What is the function of an Address Resolution Protocol (ARP)?",
+                options: [
+                    "To dynamically map an IP address to a physical machine address.",
+                    "To provide a secure connection between a web server and a browser.",
+                    "To handle the transfer of files between computers.",
+                    "To check for network connectivity using \"pings.\""
+                ],
+                correctAnswer: "To dynamically map an IP address to a physical machine address."
+            },
+            {
+                question: "33. What is the main characteristic of a Local Area Network (LAN)?",
+                options: [
+                    "It connects hosts in a single office, building, or campus.",
+                    "It spans an entire city.",
+                    "It covers a wide area across provinces or a country.",
+                    "It connects two devices using Bluetooth."
+                ],
+                correctAnswer: "It connects hosts in a single office, building, or campus."
+            },
+            {
+                question: "34. In a star topology, all computers connect to a central node called what?",
+                options: [
+                    "Switch",
+                    "Hub",
+                    "Router",
+                    "Bridge"
+                ],
+                correctAnswer: "Hub"
+            },
+            {
+                question: "35. What is the primary purpose of network management, according to the course description?",
+                options: [
+                    "To design new network protocols",
+                    "To secure and monitor the internet",
+                    "To constantly monitor for slow or failing components and notify the administrator",
+                    "To implement a client-server socket-based application"
+                ],
+                correctAnswer: "To constantly monitor for slow or failing components and notify the administrator"
+            },
+            {
+                question: "36. The TCP/IP model has how many layers?",
+                options: [
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                ],
+                correctAnswer: "4"
+            },
+            {
+                question: "37. What is the role of the Network Address Translator (NAT)?",
+                options: [
+                    "To translate a domain name to an IP address.",
+                    "To improve security and decrease the number of IP addresses an organization needs.",
+                    "To provide a path selection between two host systems.",
+                    "To provide reliable data transit across a physical link."
+                ],
+                correctAnswer: "To improve security and decrease the number of IP addresses an organization needs."
+            },
+            {
+                question: "38. Which layer of the OSI model defines electrical, mechanical, and procedural specifications for the physical link?",
+                options: [
+                    "Data Link Layer",
+                    "Physical Layer",
+                    "Network Layer",
+                    "Transport Layer"
+                ],
+                correctAnswer: "Physical Layer"
+            },
+            {
+                question: "39. In a Wireless Local Area Network (WLAN), what are the two categories of wireless stations?",
+                options: [
+                    "Routers and switches",
+                    "Modems and adapters",
+                    "Wireless access points and clients",
+                    "Hubs and servers"
+                ],
+                correctAnswer: "Wireless access points and clients"
+            },
+            {
+                question: "40. What is an internetwork (with a small \"i\")?",
+                options: [
+                    "A switched WAN",
+                    "A single LAN",
+                    "A network where two or more networks are connected",
+                    "A point-to-point WAN"
+                ],
+                correctAnswer: "A network where two or more networks are connected"
+            },
+            {
+                question: "41. What is the main difference between Fast Ethernet and Gigabit Ethernet?",
+                options: [
+                    "The type of cable used",
+                    "The maximum transmission distance",
+                    "The data transmission speed",
+                    "The encoding sequence"
+                ],
+                correctAnswer: "The data transmission speed"
+            },
+            {
+                question: "42. Which of the following is NOT a property of a network listed in the document?",
+                options: [
+                    "Sharing of records and data",
+                    "Sharing of network and computing resources",
+                    "Facilitating communications",
+                    "Providing a single point of failure"
+                ],
+                correctAnswer: "Providing a single point of failure"
+            },
+            {
+                question: "43. What is a \"Point-to-Point WAN\"?",
+                options: [
+                    "A network with more than two ends",
+                    "A network that connects two devices through a transmission medium",
+                    "A combination of several switched WANs",
+                    "A telecommunication network that provides connectivity to MANs"
+                ],
+                correctAnswer: "A network that connects two devices through a transmission medium"
+            },
+            {
+                question: "44. What is a defining feature of a Ring Topology?",
+                options: [
+                    "All computers connect to a central hub.",
+                    "It uses a single cable with two endpoints.",
+                    "Every device has exactly two neighboring devices for communication.",
+                    "Every computer connects to every other computer."
+                ],
+                correctAnswer: "Every device has exactly two neighboring devices for communication."
+            },
+            {
+                question: "45. Which of the following is a key advantage of fiber optic cable over other media?",
+                options: [
+                    "It is less expensive to install.",
+                    "It is more susceptible to EMI.",
+                    "It has greater bandwidth capabilities.",
+                    "It has a shorter transmission distance."
+                ],
+                correctAnswer: "It has greater bandwidth capabilities."
+            },
+            {
+                question: "46. Which layer of the OSI model establishes and terminates sessions between two communicating hosts?",
+                options: [
+                    "Application Layer",
+                    "Presentation Layer",
+                    "Session Layer",
+                    "Transport Layer"
+                ],
+                correctAnswer: "Session Layer"
+            },
+            {
+                question: "47. What is the core diameter of single-mode fiber, according to the document?",
+                options: [
+                    "125 microns",
+                    "8 to 10 microns",
+                    "50 microns",
+                    "62.5 microns"
+                ],
+                correctAnswer: "8 to 10 microns"
+            },
+            {
+                question: "48. What is a Wireless Access Point?",
+                options: [
+                    "A device that connects a computing device to a router.",
+                    "A mobile device such as a laptop or smartphone.",
+                    "A base station for the wireless network that transmits and receives radio frequencies.",
+                    "A physical port on a router."
+                ],
+                correctAnswer: "A base station for the wireless network that transmits and receives radio frequencies."
+            },
+            {
+                question: "49. Which of the following is NOT one of the course's intended learning outcomes (CILO) mentioned in the document?",
+                options: [
+                    "To compare and contrast fixed and dynamic allocation techniques.",
+                    "To design and implement a simple reliable network protocol.",
+                    "To implement a simple client-server socket-based application.",
+                    "To become a certified network administrator."
+                ],
+                correctAnswer: "To become a certified network administrator."
+            },
+            {
+                question: "50. What is the term for a communication method where a user or program (the client) requests a service from another program (the server)?",
+                options: [
+                    "Peer-to-peer model",
+                    "Client-server model",
+                    "Point-to-point model",
+                    "Broadcast model"
+                ],
+                correctAnswer: "Client-server model"
+            }
+        ];
+
+        let hasAttempted = false;
+        let timerInterval;
+        let currentPage = 0; // Current page of questions (0-indexed)
+        const questionsPerPage = 10; // 50 questions / 5 pages = 10 questions per page
+
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            if (hasAttempted) {
+                // Using a custom modal message instead of alert
+                showCustomMessage('You have already taken the quiz. You can only attempt it once.');
+                return;
+            }
+
+            const name = document.getElementById('name').value;
+            const course = document.getElementById('course').value;
+            const year = document.getElementById('year').value;
+            const section = document.getElementById('section').value;
+
+            if (name && course && year && section) {
+                document.getElementById('registration-section').style.display = 'none';
+                document.getElementById('quizForm').style.display = 'block';
+                startQuiz();
+                startTimer();
+                hasAttempted = true;
+            } else {
+                showCustomMessage('Please fill out all registration fields to start the quiz.');
+            }
+        });
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        // Function to strip existing numbers from question text
+        function stripQuestionNumber(questionText) {
+            // This regex looks for a number followed by a dot and a space at the beginning of the string
+            const match = questionText.match(/^(\d+\.\s*)(.*)/);
+            if (match && match[2]) {
+                return match[2]; // Return the part after the number and dot
+            }
+            return questionText; // Return original if no number found
+        }
+
+        // Function to display questions for the current page
+        function displayQuestions() {
+            const quizFormContent = document.getElementById('quizFormContent');
+            quizFormContent.innerHTML = ''; // Clear previous questions
+
+            const startIndex = currentPage * questionsPerPage;
+            const endIndex = startIndex + questionsPerPage;
+            const questionsToDisplay = quizData.slice(startIndex, endIndex);
+
+            questionsToDisplay.forEach((item, index) => {
+                const questionGlobalNumber = startIndex + index + 1; // Global question number
+                const card = document.createElement('div');
+                card.classList.add('quiz-card');
+                
+                let optionsHtml = '';
+                const shuffledOptions = [...item.options];
+                // Shuffle options for each question
+                shuffleArray(shuffledOptions);
+
+                shuffledOptions.forEach((option, optionIndex) => {
+                    // Use a unique name for radio buttons per question (q<global_question_number>)
+                    optionsHtml += `
+                        <li class="option-item">
+                            <input type="radio" id="q${questionGlobalNumber}o${optionIndex}" name="q${questionGlobalNumber}" value="${option}" data-correct="${option === item.correctAnswer}">
+                            <label for="q${questionGlobalNumber}o${optionIndex}">${option}</label>
+                        </li>
+                    `;
+                });
+
+                const cleanedQuestion = stripQuestionNumber(item.question);
+
+                card.innerHTML = `
+                    <p>${questionGlobalNumber}. ${cleanedQuestion}</p> 
+                    <ul class="options-list">
+                        ${optionsHtml}
+                    </ul>
+                `;
+                quizFormContent.appendChild(card);
+
+                // Re-select previously chosen answers
+                const storedAnswer = localStorage.getItem(`q${questionGlobalNumber}_answer`);
+                if (storedAnswer) {
+                    const selectedRadio = document.querySelector(`input[name="q${questionGlobalNumber}"][value="${storedAnswer}"]`);
+                    if (selectedRadio) {
+                        selectedRadio.checked = true;
+                    }
+                }
+            });
+
+            // Update pagination button disabled state
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const submitQuizBtn = document.getElementById('submitQuizBtn');
+
+            prevBtn.disabled = currentPage === 0;
+            nextBtn.disabled = (currentPage === Math.ceil(quizData.length / questionsPerPage) - 1);
+            submitQuizBtn.style.display = (currentPage === Math.ceil(quizData.length / questionsPerPage) - 1) ? 'block' : 'none';
+        }
+
+        function startQuiz() {
+            shuffleArray(quizData); // Shuffle all questions once at the start
+            displayQuestions(); // Display the first page of questions
+        }
+
+        function startTimer() {
+            const quizDuration = 30 * 60; // 30 minutes in seconds
+            let timeRemaining = quizDuration;
+            const timerDisplay = document.getElementById('timer');
+
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                const minutes = Math.floor(timeRemaining / 60);
+                const seconds = timeRemaining % 60;
+                timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    showCustomMessage("Time's up! Your quiz will be submitted automatically.");
+                    submitQuiz();
+                }
+            }, 1000);
+        }
+
+        // Event listener for "Next" button
+        document.getElementById('nextBtn').addEventListener('click', function() {
+            // Save current page answers before moving
+            saveCurrentPageAnswers();
+            if (currentPage < Math.ceil(quizData.length / questionsPerPage) - 1) {
+                currentPage++;
+                displayQuestions();
+            }
+        });
+
+        // Event listener for "Previous" button
+        document.getElementById('prevBtn').addEventListener('click', function() {
+            // Save current page answers before moving
+            saveCurrentPageAnswers();
+            if (currentPage > 0) {
+                currentPage--;
+                displayQuestions();
+            }
+        });
+
+        // Function to save answers of the current page to localStorage
+        function saveCurrentPageAnswers() {
+            const startIndex = currentPage * questionsPerPage;
+            const endIndex = startIndex + questionsPerPage;
+            for (let i = startIndex; i < endIndex && i < quizData.length; i++) {
+                const questionGlobalNumber = i + 1;
+                const radios = document.querySelectorAll(`input[name="q${questionGlobalNumber}"]`);
+                const selected = Array.from(radios).find(radio => radio.checked);
+                if (selected) {
+                    localStorage.setItem(`q${questionGlobalNumber}_answer`, selected.value);
+                } else {
+                    localStorage.removeItem(`q${questionGlobalNumber}_answer`); // Remove if unchecked
+                }
+            }
+        }
+
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            saveCurrentPageAnswers(); // Save answers one last time before submission
+
+            let score = 0;
+            quizData.forEach((item, index) => {
+                const questionGlobalNumber = index + 1;
+                const storedAnswer = localStorage.getItem(`q${questionGlobalNumber}_answer`);
+                if (storedAnswer === item.correctAnswer) {
+                    score++;
+                }
+            });
+
+            // Populate and display certificate
+            document.getElementById('cert-name').textContent = document.getElementById('name').value;
+            document.getElementById('cert-course').textContent = document.getElementById('course').value;
+            document.getElementById('cert-year').textContent = document.getElementById('year').value;
+            document.getElementById('cert-section').textContent = document.getElementById('section').value;
+            document.getElementById('cert-score').textContent = score;
+
+            document.getElementById('quizForm').style.display = 'none';
+            document.getElementById('certificate').style.display = 'block';
+
+            // Smooth scroll to the certificate
+            document.getElementById('certificate').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            // Disable the button to prevent multiple submissions
+            document.getElementById('submitQuizBtn').disabled = true;
+
+            // Optionally, clear stored answers after submission if a user can't re-take
+            // localStorage.clear();
+        }
+
+        document.getElementById('submitQuizBtn').addEventListener('click', function(event) {
+            event.preventDefault();
+            // Show a custom confirmation dialog instead of alert
+            showConfirmationMessage('Are you sure you want to submit your answers?', submitQuiz);
+        });
+
+        document.getElementById('downloadCertBtn').addEventListener('click', function() {
+            const certificateContainer = document.getElementById('certificate');
+            const downloadBtn = this;
+
+            // Hide the download button so it's not on the certificate image
+            downloadBtn.style.display = 'none';
+
+            // Use html2canvas to convert the div to an image
+            html2canvas(certificateContainer, {
+                scale: 2 // Increase scale for better resolution
+            }).then(canvas => {
+                // Restore the download button
+                downloadBtn.style.display = 'block';
+
+                // Get the image data as a URL
+                const imageData = canvas.toDataURL('image/png');
+                
+                // Create a temporary link element
+                const a = document.createElement('a');
+                a.href = imageData;
+                a.download = 'Quiz_Certificate.png';
+                
+                // Append the link to the body, click it, then remove it
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            }).catch(error => {
+                console.error("Error generating certificate image: ", error);
+                // Restore the download button even if an error occurs
+                showCustomMessage("Failed to download certificate. Please try again.");
+            });
+        });
+
+        // Custom modal for messages and confirmations
+        function showCustomMessage(message) {
+            const modalHtml = `
+                <div id="customModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 1000;">
+                    <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); text-align: center; max-width: 400px; width: 90%;">
+                        <p style="font-size: 1.1em; margin-bottom: 20px;">${message}</p>
+                        <button onclick="document.getElementById('customModal').remove()" style="width: auto; padding: 10px 20px; font-size: 1em; display: inline-block;">OK</button>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+        }
+
+        function showConfirmationMessage(message, onConfirm) {
+            const modalHtml = `
+                <div id="customModal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 1000;">
+                    <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); text-align: center; max-width: 400px; width: 90%;">
+                        <p style="font-size: 1.1em; margin-bottom: 20px;">${message}</p>
+                        <button id="confirmBtn" style="width: auto; padding: 10px 20px; font-size: 1em; margin-right: 10px; display: inline-block;">Yes</button>
+                        <button onclick="document.getElementById('customModal').remove()" style="width: auto; padding: 10px 20px; font-size: 1em; background-color: var(--secondary-color); display: inline-block;">No</button>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+
+            document.getElementById('confirmBtn').addEventListener('click', function() {
+                document.getElementById('customModal').remove();
+                onConfirm();
+            });
+        }
+    </script>
+</body>
+</html>
