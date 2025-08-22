@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT 3116 - Performance Task 1.0</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #0056b3;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        .task-section {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+        }
+        .task-section:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>IT 3116 - Performance Task 1.0</h1>
+        <h2>Performance Task: Human Network Topologies</h2>
+        <p><strong>Objective</strong></p>
+        <p>To physically demonstrate and troubleshoot three common network topologies—bus, star, and ring—using humans as the network nodes. This task will help participants understand the concepts of data flow, fault tolerance, and efficiency in each topology.</p>
+
+        <div class="task-section">
+            <h3>Part 1: Network Setup & Demonstration</h3>
+            <ul>
+                <li><strong>Form teams:</strong> Divide the group into teams of 6-8 people. Each person in the team represents a node (computer) on the network.</li>
+                <li><strong>Define "Data":</strong> The "data" will be a physical object, like a small ball or a toy, passed from one person to another.</li>
+                <li><strong>Simulate Topologies:</strong>
+                    <ul>
+                        <li><strong>Bus Topology:</strong> Have everyone stand in a straight line. The first person (the "server") sends the "data" down the line. Each person takes the data, examines it, and passes it to the next person. Only the designated recipient keeps the data; everyone else simply passes it along.</li>
+                        <li><strong>Star Topology:</strong> Have five people stand around a central person (the "hub" or "switch"). To send data, a person must first pass it to the hub, who then passes it to the correct recipient.</li>
+                        <li><strong>Ring Topology:</strong> Have everyone stand in a circle. The data is passed from one person to the next in a single direction around the circle until it reaches its destination.</li>
+                    </ul>
+                </li>
+                <li><strong>Time the transfers:</strong> For each topology, time how long it takes for a piece of data to travel from one person to a specific, designated recipient on the other side of the network. Record the times for each topology.</li>
+            </ul>
+        </div>
+
+        <div class="task-section">
+            <h3>Part 2: Troubleshooting and Analysis</h3>
+            <ul>
+                <li><strong>Introduce "Faults":</strong> During each topology simulation, introduce a "fault" by having one person (a "node") suddenly drop their hands and refuse to pass the data. This simulates a broken cable or a failed computer.</li>
+                <li><strong>Observe and Analyze:</strong>
+                    <ul>
+                        <li><strong>Bus Topology:</strong> What happens to the entire network when a single person in the middle "fails"? Can data still get from the start to the end of the line?</li>
+                        <li><strong>Star Topology:</strong> What happens when one of the people on the outer edge "fails"? Can the other nodes still communicate with each other?</li>
+                        <li><strong>Ring Topology:</strong> What happens when one person in the circle "fails"? Can data still reach its destination?</li>
+                    </ul>
+                </li>
+                <li><strong>Discuss and Compare:</strong> After the simulations, have a group discussion. Compare the results:
+                    <ul>
+                        <li>Which topology was the fastest for data transfer?</li>
+                        <li>Which one was the most reliable (least affected by a single point of failure)?</li>
+                        <li>Which one was the easiest to set up initially?</li>
+                        <li>Which one would be easiest to "scale" or add a new person to?</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="task-section">
+            <h3>Part 3: Report & Reflection</h3>
+            <ul>
+                <li><strong>Written Report:</strong> Each participant or team will write a short report summarizing their findings. The report should include:
+                    <ul>
+                        <li>A description of how each topology was demonstrated.</li>
+                        <li>The recorded times for data transfer.</li>
+                        <li>An analysis of what happened during the "fault" simulations for each topology.</li>
+                        <li>A conclusion on which topology they believe is the "best" and why, based on their experience.</li>
+                    </ul>
+                </li>
+                <li><strong>Presentation:</strong> Have a few participants present their findings and reflections to the larger group. This will provide an opportunity to share insights and different perspectives on the pros and cons of each network topology.</li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
