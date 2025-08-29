@@ -1,0 +1,491 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Types of Computer Networks</title>
+    <!-- Tailwind CSS CDN for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e0e0e0;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #a0a0a0;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #808080;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center p-4">
+
+    <!-- Header Section -->
+    <header class="w-full max-w-4xl bg-white shadow-lg rounded-xl p-6 mb-8 text-center">
+        <h1 class="text-3xl font-bold text-gray-700 mb-2">IT 3116 - Networking 2</h1>
+        <h2 class="text-4xl font-extrabold text-gray-900 mb-2">Types of Computer Networks 🌐</h2>
+        <p class="text-lg text-gray-600">
+            Understanding the different scales and applications of network connections.
+        </p>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="w-full max-w-4xl bg-white shadow-lg rounded-xl p-8 mb-8">
+        <section class="mb-10">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4 border-b-2 border-indigo-500 pb-2">
+                Introduction to Computer Networks
+            </h2>
+            <p class="text-gray-700 leading-relaxed text-lg">
+                Computer networks are systems that allow two or more devices to connect and share data or resources. They are broadly categorized based on their geographical span, ranging from small personal networks to global interconnected systems. The choice of network type depends on the required coverage, number of users, data transfer rate, and cost.
+            </p>
+        </section>
+
+        <!-- Types of Computer Networks Sections -->
+        <section>
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b-2 border-indigo-500 pb-2">
+                Types of Computer Networks
+            </h2>
+
+            <!-- Personal Area Network (PAN) -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-md mb-8 flex flex-col md:flex-row-reverse items-center space-y-4 md:space-y-0 md:space-x-reverse md:space-x-6">
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">1. Personal Area Network (PAN) 👨‍💻</h3>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        A <strong class="text-indigo-600">PAN</strong> is the smallest and most basic type of network, designed for individual use within a very limited personal space.
+                    </p>
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800">Key Characteristics:</h4>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li><strong class="font-medium">Range:</strong> Typically covers a few meters, up to 10 meters (33 feet).</li>
+                            <li><strong class="font-medium">Connectivity:</strong> Uses technologies like Bluetooth, infrared, or USB.</li>
+                            <li><strong class="font-medium">Devices:</strong> Connects personal devices such as smartphones, tablets, laptops, wireless headsets, and printers.</li>
+                        </ul>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        <strong class="font-medium">Example:</strong> Connecting your wireless headphones to your phone, or using a Bluetooth mouse with your laptop.
+                    </p>
+                    <button class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" onclick="openModal('panNetwork')">
+                        Learn More
+                    </button>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="../Lesson/images/PAN.jpeg" alt="Personal Area Network Diagram" class="rounded-lg shadow-md w-full max-w-xs md:max-w-full h-auto object-contain" onerror="this.onerror=null;this.src='https://placehold.co/400x250/cbd5e1/1e293b?text=Personal-Area-Network';">
+                </div>
+            </div>
+
+            <!-- Local Area Network (LAN) -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-md mb-8 flex flex-col md:flex-row-reverse items-center space-y-4 md:space-y-0 md:space-x-reverse md:space-x-6">
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">2. Local Area Network (LAN) 🏠</h3>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        A <strong class="text-indigo-600">LAN</strong> connects devices within a limited geographical area, such as a home, office building, or school campus.
+                    </p>
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800">Key Characteristics:</h4>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li><strong class="font-medium">Range:</strong> Confined to a single building or a small cluster of buildings.</li>
+                            <li><strong class="font-medium">Connectivity:</strong> Uses Ethernet (wired) or Wi-Fi (wireless).</li>
+                            <li><strong class="font-medium">Devices:</strong> Connects computers, servers, printers, and other network-enabled devices.</li>
+                            <li><strong class="font-medium">Data Transfer Rate:</strong> High, typically from 10 Mbps to 10 Gbps.</li>
+                        </ul>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        <strong class="font-medium">Example:</strong> All computers and printers connected within a single office building.
+                    </p>
+                    <button class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" onclick="openModal('lanNetwork')">
+                        Learn More
+                    </button>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="../Lesson/images/LAN.jpeg" alt="Local Area Network Diagram" class="rounded-lg shadow-md w-full max-w-xs md:max-w-full h-auto object-contain" onerror="this.onerror=null;this.src='https://placehold.co/400x250/cbd5e1/1e293b?text=Local-Area-Network';">
+                </div>
+            </div>
+
+            <!-- Wireless Local Area Network (WLAN) -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-md mb-8 flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
+                <div class="md:w-full">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">3. Wireless Local Area Network (WLAN) 📶</h3>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        A <strong class="text-indigo-600">WLAN</strong> is a type of LAN that uses wireless communication to connect devices, eliminating the need for physical cables.
+                    </p>
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800">Key Characteristics:</h4>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li><strong class="font-medium">Range:</strong> Similar to LANs, typically within a building or campus.</li>
+                            <li><strong class="font-medium">Connectivity:</strong> Uses Wi-Fi (IEEE 802.11 standards).</li>
+                            <li><strong class="font-medium">Flexibility:</strong> Offers mobility to users within the coverage area.</li>
+                        </ul>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        <strong class="font-medium">Example:</strong> Connecting your laptop to the internet via your home Wi-Fi router.
+                    </p>
+                    <button class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" onclick="openModal('wlanNetwork')">
+                        Learn More
+                    </button>
+                     <div class="md:w-1/2 flex justify-center">
+                    <img src="../Lesson/images/WLAN.jpeg" alt="Wireless Local Area Network Diagram" class="rounded-lg shadow-md w-full max-w-xs md:max-w-full h-auto object-contain" onerror="this.onerror=null;this.src='https://placehold.co/400x250/cbd5e1/1e293b?text=Local-Area-Network';">
+                </div>
+                </div>
+            </div>
+
+            <!-- Metropolitan Area Network (MAN) -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-md mb-8 flex flex-col md:flex-row-reverse items-center space-y-4 md:space-y-0 md:space-x-reverse md:space-x-6">
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">4. Metropolitan Area Network (MAN) 🏙️</h3>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        A <strong class="text-indigo-600">MAN</strong> covers a larger geographical area than a LAN but is smaller than a WAN, typically spanning an entire city or a large campus.
+                    </p>
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800">Key Characteristics:</h4>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li><strong class="font-medium">Range:</strong> Covers a metropolitan area, connecting multiple LANs.</li>
+                            <li><strong class="font-medium">Connectivity:</strong> Often uses fiber optic cables or microwave links.</li>
+                            <li><strong class="font-medium">Ownership:</strong> Usually owned by a single entity (e.g., a city council) or a consortium.</li>
+                        </ul>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        <strong class="font-medium">Example:</strong> A network connecting different university campuses within a city, or a cable TV network.
+                    </p>
+                    <button class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" onclick="openModal('manNetwork')">
+                        Learn More
+                    </button>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="../Lesson/images/MAN.jpeg" alt="Metropolitan Area Network Diagram" class="rounded-lg shadow-md w-full max-w-xs md:max-w-full h-auto object-contain" onerror="this.onerror=null;this.src='https://placehold.co/400x250/cbd5e1/1e293b?text=Metropolitan-Area-Network';">
+                </div>
+            </div>
+
+            <!-- Wide Area Network (WAN) -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-md mb-8 flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">5. Wide Area Network (WAN) 🌍</h3>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        A <strong class="text-indigo-600">WAN</strong> spans large geographical areas, connecting cities, countries, or even continents. The internet itself is the largest WAN.
+                    </p>
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800">Key Characteristics:</h4>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li><strong class="font-medium">Range:</strong> Connects geographically dispersed LANs and MANs.</li>
+                            <li><strong class="font-medium">Connectivity:</strong> Uses technologies like fiber optic lines, satellite links, and leased lines.</li>
+                            <li><strong class="font-medium">Data Transfer Rate:</strong> Varies widely, often lower than LANs due to long distances, but constantly improving.</li>
+                        </ul>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        <strong class="font-medium">Example:</strong> The network connecting all branches of a multinational corporation, or the global internet.
+                    </p>
+                    <button class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" onclick="openModal('wanNetwork')">
+                        Learn More
+                    </button>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="../Lesson/images/WAN.jpeg" alt="Wide Area Network Diagram" class="rounded-lg shadow-md w-full max-w-xs md:max-w-full h-auto object-contain" onerror="this.onerror=null;this.src='https://placehold.co/400x250/cbd5e1/1e293b?text=Wide-Area-Network';">
+                </div>
+            </div>
+
+            <!-- Global Area Network (GAN) -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-md mb-8 flex flex-col md:flex-row-reverse items-center space-y-4 md:space-y-0 md:space-x-reverse md:space-x-6">
+                <div class="md:w-full">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">6. Global Area Network (GAN) 🛰️</h3>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        A <strong class="text-indigo-600">GAN</strong> is a network used to support mobile communication across an arbitrary number of wireless LANs, satellite coverage areas, etc. The most prominent example of a GAN is the internet.
+                    </p>
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800">Key Characteristics:</h4>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li><strong class="font-medium">Range:</strong> Connects mobile users across the globe.</li>
+                            <li><strong class="font-medium">Connectivity:</strong> Utilizes a combination of wired, wireless, and satellite technologies.</li>
+                            <li><strong class="font-medium">Focus:</strong> Primarily supports global mobility and communication.</li>
+                        </ul>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        <strong class="font-medium">Example:</strong> Multinational organizations with mobile employees accessing their corporate network from anywhere in the world.
+                    </p>
+                    <button class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" onclick="openModal('ganNetwork')">
+                        Learn More
+                    </button>
+                </div>
+            </div>
+
+            <!-- Storage Area Network (SAN) -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-md mb-8 flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
+                <div class="md:w-full">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">7. Storage Area Network (SAN) 🗄️</h3>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        A <strong class="text-indigo-600">SAN</strong> is a dedicated high-speed network that provides access to consolidated, block-level data storage.
+                    </p>
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800">Key Characteristics:</h4>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li><strong class="font-medium">Purpose:</strong> Provides shared pools of storage devices to multiple servers.</li>
+                            <li><strong class="font-medium">Connectivity:</strong> Uses technologies like Fibre Channel or iSCSI.</li>
+                            <li><strong class="font-medium">Performance:</strong> Optimized for high-speed data transfer between servers and storage.</li>
+                        </ul>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        <strong class="font-medium">Example:</strong> Used in data centers and large enterprises for efficient data management and backups.
+                    </p>
+                    <button class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" onclick="openModal('sanNetwork')">
+                        Learn More
+                    </button>
+                </div>
+            </div>
+
+            <!-- Enterprise Private Network (EPN) -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-md mb-8 flex flex-col md:flex-row-reverse items-center space-y-4 md:space-y-0 md:space-x-reverse md:space-x-6">
+                <div class="md:w-full">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">8. Enterprise Private Network (EPN) 🏢</h3>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        An <strong class="text-indigo-600">EPN</strong> is a computer network built by an enterprise to interconnect its various company sites (e.g., production sites, offices, shops) in a way that all shared resources can be accessed by authorized users.
+                    </p>
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800">Key Characteristics:</h4>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li><strong class="font-medium">Ownership:</strong> Owned and managed by a single organization.</li>
+                            <li><strong class="font-medium">Purpose:</strong> Connects all company locations securely.</li>
+                            <li><strong class="font-medium">Security:</strong> High-level security measures are typically implemented.</li>
+                        </ul>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        <strong class="font-medium">Example:</strong> A large corporation with multiple offices using a private network to share resources and communicate internally.
+                    </p>
+                    <button class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" onclick="openModal('epnNetwork')">
+                        Learn More
+                    </button>
+                </div>
+            </div>
+
+            <!-- Virtual Private Network (VPN) -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-md mb-8 flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
+                <div class="md:w-full">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">9. Virtual Private Network (VPN) 🔒</h3>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        A <strong class="text-indigo-600">VPN</strong> extends a private network across a public network (like the internet), enabling users to send and receive data as if their computing devices were directly connected to the private network.
+                    </p>
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800">Key Characteristics:</h4>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li><strong class="font-medium">Security:</strong> Creates a secure, encrypted connection over an insecure network.</li>
+                            <li><strong class="font-medium">Accessibility:</strong> Allows remote users to securely access a private network.</li>
+                            <li><strong class="font-medium">Cost-Effective:</strong> Leverages existing internet infrastructure.</li>
+                        </ul>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        <strong class="font-medium">Example:</strong> An employee working from home securely accessing their company's internal network resources.
+                    </p>
+                    <button class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" onclick="openModal('vpnNetwork')">
+                        Learn More
+                    </button>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="w-full max-w-4xl bg-gray-800 text-white shadow-lg rounded-xl p-6 mt-8 text-center">
+        <p class="text-sm">
+            © SirLavz2025 | RONALD T. LAVA, MSIT | College of Computing Studies | Laguna University
+        </p>
+    </footer>
+
+    <!-- Generic Modal Structure -->
+    <div id="infoModal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center p-4 hidden z-50">
+        <div class="bg-white rounded-lg shadow-xl p-8 max-w-lg w-full transform transition-all scale-95 duration-300 ease-out">
+            <div class="flex justify-between items-center mb-6 border-b pb-3">
+                <h3 id="modalTitle" class="text-2xl font-bold text-gray-800">Network Type Details</h3>
+                <button class="text-gray-500 hover:text-gray-700 text-3xl leading-none" onclick="closeModal()">&times;</button>
+            </div>
+            <div id="modalContent" class="text-gray-700 leading-relaxed space-y-4">
+                <!-- Content will be injected here by JavaScript -->
+            </div>
+            <div class="mt-8 text-right">
+                <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-full shadow transition duration-300 ease-in-out" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Modal Functionality -->
+    <script>
+        const modal = document.getElementById('infoModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalContent = document.getElementById('modalContent');
+
+        const networkTypeDetails = {
+            panNetwork: {
+                title: "Personal Area Network (PAN) Details",
+                content: `
+                    <p>A **Personal Area Network (PAN)** is the smallest form of network, connecting devices for an individual user within their immediate vicinity. It's often used for short-range communication.</p>
+                    <h4 class="font-semibold text-gray-800 mt-4">Further Characteristics:</h4>
+                    <ul class="list-disc list-inside">
+                        <li>**Low Power Consumption:** Designed for battery-operated devices.</li>
+                        <li>**Easy Setup:** Connections are typically straightforward and automatic.</li>
+                        <li>**Limited Bandwidth:** Not designed for high-speed, large data transfers.</li>
+                        <li>**Common Technologies:** Bluetooth (most prevalent), infrared (older), USB tethering.</li>
+                    </ul>
+                    <h4 class="font-semibold text-gray-800 mt-4">Real-world Application:</h4>
+                    <p>Imagine using a wireless mouse and keyboard with your laptop, or streaming music from your smartphone to a Bluetooth speaker. These are classic examples of PANs enhancing personal computing and entertainment.</p>
+                `
+            },
+            lanNetwork: {
+                title: "Local Area Network (LAN) Details",
+                content: `
+                    <p>A **Local Area Network (LAN)** interconnects devices within a confined geographical area, providing high-speed communication and resource sharing. LANs are foundational for homes, offices, and educational institutions.</p>
+                    <h4 class="font-semibold text-gray-800 mt-4">Further Characteristics:</h4>
+                    <ul class="list-disc list-inside">
+                        <li>**Private Ownership:** Typically owned and managed by a single organization or individual.</li>
+                        <li>**High Data Rates:** Offers very fast data transfer speeds.</li>
+                        <li>**Cost-Effective:** Relatively inexpensive to set up and maintain for its performance level.</li>
+                        <li>**Common Technologies:** Ethernet (for wired connections) and Wi-Fi (for wireless connections).</li>
+                    </ul>
+                    <h4 class="font-semibold text-gray-800 mt-4">Real-world Application:</h4>
+                    <p>In a typical office, all employee computers, shared printers, and file servers are connected via a LAN, allowing seamless collaboration and access to centralized resources.</p>
+                `
+            },
+            wlanNetwork: {
+                title: "Wireless Local Area Network (WLAN) Details",
+                content: `
+                    <p>A **Wireless Local Area Network (WLAN)** is essentially a LAN that utilizes radio waves rather than physical cables for communication. This offers significant flexibility and mobility within its coverage area.</p>
+                    <h4 class="font-semibold text-gray-800 mt-4">Further Characteristics:</h4>
+                    <ul class="list-disc list-inside">
+                        <li>**Mobility:** Users can move freely within the network's range while maintaining connectivity.</li>
+                        <li>**Ease of Deployment:** Reduces the need for extensive cabling, making installation simpler in some environments.</li>
+                        <li>**Standards:** Primarily based on the IEEE 802.11 standards, commonly known as Wi-Fi.</li>
+                        <li>**Security Concerns:** Requires robust security protocols (WPA2/WPA3) to prevent unauthorized access.</li>
+                    </ul>
+                    <h4 class="font-semibold text-gray-800 mt-4">Real-world Application:</h4>
+                    <p>Your home Wi-Fi network, coffee shop hotspots, or corporate wireless access points all represent WLANs, providing convenient internet access and internal network connectivity.</p>
+                `
+            },
+            manNetwork: {
+                title: "Metropolitan Area Network (MAN) Details",
+                content: `
+                    <p>A **Metropolitan Area Network (MAN)** is designed to interconnect multiple LANs across a city or a large geographical region, providing higher bandwidth than WANs for local needs.</p>
+                    <h4 class="font-semibold text-gray-800 mt-4">Further Characteristics:</h4>
+                    <ul class="list-disc list-inside">
+                        <li>**Medium-sized Scope:** Bridges the gap between LANs and WANs in terms of geographical reach.</li>
+                        <li>**High-Speed Backbone:** Often uses fiber optic cables to connect different areas with high data rates.</li>
+                        <li>**Public/Private Ownership:** Can be owned by public entities (e.g., city networks) or large corporations.</li>
+                        <li>**Interconnection:** Facilitates communication between different branches of an organization within a city.</li>
+                    </ul>
+                    <h4 class="font-semibold text-gray-800 mt-4">Real-world Application:</h4>
+                    <p>A university's network connecting multiple campuses situated across a city, or a metropolitan fiber network offering high-speed internet to local businesses and residents.</p>
+                `
+            },
+            wanNetwork: {
+                title: "Wide Area Network (WAN) Details",
+                content: `
+                    <p>A **Wide Area Network (WAN)** connects devices over vast geographical distances, such as across countries or continents. The Internet is the most prominent example of a global WAN.</p>
+                    <h4 class="font-semibold text-gray-800 mt-4">Further Characteristics:</h4>
+                    <ul class="list-disc list-inside">
+                        <li>**Global Reach:** Spans extensive geographical areas, overcoming distance limitations.</li>
+                        <li>**Diverse Technologies:** Relies on various technologies, including fiber-optic lines, satellite links, and cellular networks.</li>
+                        <li>**Shared Infrastructure:** Often uses public or leased telecommunication lines.</li>
+                        <li>**Lower Data Rates (Historically):** While constantly improving, individual connections may be slower than LANs due to the distances involved.</li>
+                    </ul>
+                    <h4 class="font-semibold text-gray-800 mt-4">Real-world Application:</h4>
+                    <p>Connecting the headquarters of a multinational company in New York with its branch offices in London and Tokyo, or simply accessing a website hosted on a server across the globe.</p>
+                `
+            },
+            ganNetwork: {
+                title: "Global Area Network (GAN) Details",
+                content: `
+                    <p>A **Global Area Network (GAN)** is designed to support mobile communication across an arbitrary number of wireless LANs, satellite coverage areas, and other networks, effectively providing seamless connectivity on a global scale. The Internet itself can be considered the ultimate GAN.</p>
+                    <h4 class="font-semibold text-gray-800 mt-4">Further Characteristics:</h4>
+                    <ul class="list-disc list-inside">
+                        <li>**Seamless Mobility:** Enables users to maintain network access while moving between different network types and locations worldwide.</li>
+                        <li>**Integration of Technologies:** Combines various network technologies (wired, wireless, satellite) to achieve global coverage.</li>
+                        <li>**Complex Infrastructure:** Involves intricate routing and management to handle vast geographical distances and diverse network types.</li>
+                    </ul>
+                    <h4 class="font-semibold text-gray-800 mt-4">Real-world Application:</h4>
+                    <p>A business executive traveling internationally, using their mobile device to access corporate resources securely, regardless of whether they are on a hotel Wi-Fi, cellular network, or satellite connection.</p>
+                `
+            },
+            sanNetwork: {
+                title: "Storage Area Network (SAN) Details",
+                content: `
+                    <p>A **Storage Area Network (SAN)** is a dedicated, high-speed network specifically designed to provide servers with access to consolidated, block-level data storage. It separates storage from the main network to optimize data access.</p>
+                    <h4 class="font-semibold text-gray-800 mt-4">Further Characteristics:</h4>
+                    <ul class="list-disc list-inside">
+                        <li>**Block-Level Access:** Treats storage devices as if they were directly attached to the server, offering high performance.</li>
+                        <li>**High Throughput & Low Latency:** Optimized for rapid data transfer, crucial for databases and applications.</li>
+                        <li>**Scalability:** Easily expandable to add more storage capacity without affecting network performance.</li>
+                        <li>**Technologies:** Primarily uses Fibre Channel (FC) for high performance, and iSCSI (Internet Small Computer System Interface) over Ethernet.</li>
+                    </ul>
+                    <h4 class="font-semibold text-gray-800 mt-4">Real-world Application:</h4>
+                    <p>Large enterprises and data centers use SANs to host massive databases, virtual machine environments, and critical applications, ensuring fast, reliable, and centralized data storage for multiple servers.</p>
+                `
+            },
+            epnNetwork: {
+                title: "Enterprise Private Network (EPN) Details",
+                content: `
+                    <p>An **Enterprise Private Network (EPN)** is a private computer network built and managed by an organization to securely interconnect all its various locations (e.g., production sites, offices, shops). It's designed for exclusive internal use.</p>
+                    <h4 class="font-semibold text-gray-800 mt-4">Further Characteristics:</h4>
+                    <ul class="list-disc list-inside">
+                        <li>**Exclusive Use:** Dedicated to the organization's traffic and resources.</li>
+                        <li>**High Security:** Implements robust security measures to protect sensitive corporate data.</li>
+                        <li>**Controlled Access:** Only authorized personnel and devices can access the network.</li>
+                        <li>**Performance:** Designed to meet the specific performance and reliability needs of the enterprise.</li>
+                    </ul>
+                    <h4 class="font-semibold text-gray-800 mt-4">Real-world Application:</h4>
+                    <p>A multinational bank uses an EPN to connect all its global branches, ATMs, and data centers, ensuring secure and private communication for financial transactions and internal operations.</p>
+                `
+            },
+            vpnNetwork: {
+                title: "Virtual Private Network (VPN) Details",
+                content: `
+                    <p>A **Virtual Private Network (VPN)** creates a secure, encrypted connection (a "tunnel") over a less secure network, typically the public internet. It allows users to access private network resources as if they were physically connected to that private network, enhancing privacy and security.</p>
+                    <h4 class="font-semibold text-gray-800 mt-4">Further Characteristics:</h4>
+                    <ul class="list-disc list-inside">
+                        <li>**Encryption:** All data traveling through the VPN tunnel is encrypted, protecting it from eavesdropping.</li>
+                        <li>**Anonymity/Privacy:** Can mask the user's actual IP address, enhancing online privacy.</li>
+                        <li>**Remote Access:** Enables remote employees to securely connect to their company's internal network.</li>
+                        <li>**Cost-Effective:** Leverages existing internet infrastructure, avoiding the need for dedicated private lines.</li>
+                    </ul>
+                    <h4 class="font-semibold text-gray-800 mt-4">Real-world Application:</h4>
+                    <p>A remote worker uses a VPN client on their laptop to connect to their corporate network, accessing shared drives and applications securely from their home office, or an individual uses a VPN service to protect their online activity on public Wi-Fi.</p>
+                `
+            }
+        };
+
+        function openModal(networkKey) {
+            const details = networkTypeDetails[networkKey];
+            if (details) {
+                modalTitle.innerHTML = details.title;
+                modalContent.innerHTML = details.content;
+                modal.classList.remove('hidden');
+                setTimeout(() => { // Small delay for animation
+                    modal.querySelector('.transform').classList.remove('scale-95');
+                    modal.querySelector('.transform').classList.add('scale-100');
+                }, 50);
+            }
+        }
+
+        function closeModal() {
+            modal.querySelector('.transform').classList.remove('scale-100');
+            modal.querySelector('.transform').classList.add('scale-95');
+            setTimeout(() => { // Hide after animation
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Close modal if clicking outside
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+
+</body>
+</html>

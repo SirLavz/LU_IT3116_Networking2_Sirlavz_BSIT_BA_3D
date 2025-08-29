@@ -1,0 +1,360 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 5: Network Topology</title>
+    <!-- Tailwind CSS CDN for modern styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e0e0e0;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #a0a0a0;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #808080;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center p-4">
+
+    <!-- Header Section -->
+    <header class="w-full max-w-4xl bg-white shadow-lg rounded-xl p-6 mb-8 text-center">
+        <h1 class="text-3xl font-bold text-gray-700 mb-2">IT 3116 - Networking 2</h1>
+        <h2 class="text-4xl font-extrabold text-gray-900 mb-2">Lesson 5: Network Topology 🌐</h2>
+        <p class="text-lg text-gray-600">
+            Exploring the physical and logical arrangements of computer networks.
+        </p>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="w-full max-w-4xl bg-white shadow-lg rounded-xl p-8 mb-8">
+        <section class="mb-10">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4 border-b-2 border-indigo-500 pb-2">
+                What is Network Topology?
+            </h2>
+            <p class="text-gray-700 leading-relaxed text-lg">
+                <strong class="text-indigo-600">Network Topology</strong> describes the physical arrangement or layout of connected devices in a computer network. It defines how data flows and how components are interconnected. Essentially, it's the map of a network, showing how two or more devices link together, and how multiple links form a complete structure. The choice of topology significantly impacts a network's efficiency, reliability, and scalability.
+            </p>
+        </section>
+
+        <!-- Types of Network Topologies -->
+        <section>
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b-2 border-indigo-500 pb-2">
+                Types of Network Topologies
+            </h2>
+
+            <!-- Point-to-Point Topology -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-md mb-8 flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">1. Point-to-Point ↔️</h3>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        This is the simplest form of network topology. It involves a direct, dedicated connection between <strong class="text-indigo-600">two communicating devices</strong>. This creates an exclusive link for communication.
+                    </p>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        <strong class="font-medium">Usage:</strong> Often seen in basic connections, such as a computer directly connected to a printer or a dedicated WAN link between two offices.
+                    </p>
+                    <button class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" onclick="openModal('pointToPoint')">
+                        Learn More
+                    </button>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20240614235231/Point-to-point-topology.png" alt="Point-to-Point Topology" class="rounded-lg shadow-md w-full max-w-xs md:max-w-full h-auto object-contain" onerror="this.onerror=null;this.src='https://placehold.co/400x250/cbd5e1/1e293b?text=Point-to-Point';">
+                </div>
+            </div>
+
+            <!-- Bus Topology -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-md mb-8 flex flex-col md:flex-row-reverse items-center space-y-4 md:space-y-0 md:space-x-reverse md:space-x-6">
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">2. Bus Topology 🚌</h3>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        The bus topology uses a shared communication medium. All devices in the network are connected to a single main cable, often referred to as a <strong class="text-indigo-600">backbone</strong>. Data travels along this cable in one direction. Each end of the shared channel has a <strong class="text-indigo-600">line terminator</strong> to absorb signals and prevent reflections.
+                    </p>
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800">Advantages:</h4>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li>Simple and inexpensive to install, requiring less cable.</li>
+                        </ul>
+                    </div>
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800">Disadvantages:</h4>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li><strong class="font-medium">Single point of failure:</strong> If the main backbone cable fails, the entire network goes down.</li>
+                            <li><strong class="font-medium">Difficult to troubleshoot:</strong> Identifying the exact location of a fault can be challenging.</li>
+                            <li><strong class="font-medium">Performance degradation:</strong> As more devices are added, network performance can slow down due to increased traffic and collisions.</li>
+                        </ul>
+                    </div>
+                    <button class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" onclick="openModal('busTopology')">
+                        Learn More
+                    </button>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/3-55.png" alt="Bus Topology" class="rounded-lg shadow-md w-full max-w-xs md:max-w-full h-auto object-contain" onerror="this.onerror=null;this.src='https://placehold.co/400x250/cbd5e1/1e293b?text=Bus-Topology';">
+                </div>
+            </div>
+
+            <!-- Star Topology -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-md mb-8 flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">3. Star Topology ⭐</h3>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        A popular choice for many modern networks. All devices are individually connected to a <strong class="text-indigo-600">central hub, switch, or router</strong>. This central device acts as a server, managing communication between all connected nodes.
+                    </p>
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800">Advantages:</h4>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li>Easy to install and manage; adding or removing devices is straightforward.</li>
+                            <li><strong class="font-medium">Fault isolation:</strong> A failure in one cable only affects the connected device, not the entire network.</li>
+                            <li>Centralized control makes it easier to monitor and troubleshoot.</li>
+                        </ul>
+                    </div>
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800">Disadvantages:</h4>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li><strong class="font-medium">Single point of failure:</strong> If the central hub fails, the entire network becomes inoperable.</li>
+                            <li>Higher cabling cost than bus topology, as each device needs its own connection.</li>
+                        </ul>
+                    </div>
+                    <button class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" onclick="openModal('starTopology')">
+                        Learn More
+                    </button>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20241028174732747554/Star-Topology.png" alt="Star Topology" class="rounded-lg shadow-md w-full max-w-xs md:max-w-full h-auto object-contain" onerror="this.onerror=null;this.src='https://placehold.co/400x250/cbd5e1/1e293b?text=Star-Topology';">
+                </div>
+            </div>
+
+            <!-- Ring Topology -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-md mb-8 flex flex-col md:flex-row-reverse items-center space-y-4 md:space-y-0 md:space-x-reverse md:space-x-6">
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">4. Ring Topology 💍</h3>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        Characterized by its circular data flow. Each device is connected to exactly two neighboring devices, forming a closed loop or <strong class="text-indigo-600">ring</strong>. Data typically travels in one direction around the ring, often using a "token" to control access to the network.
+                    </p>
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800">Advantages:</h4>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li>Orderly data flow, preventing collisions.</li>
+                            <li>Relatively easy to troubleshoot by observing token movement.</li>
+                        </ul>
+                    </div>
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800">Disadvantages:</h4>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li><strong class="font-medium">Single point of failure:</strong> A break in the ring (e.g., cable cut or device failure) can disable the entire network.</li>
+                            <li>Adding/removing devices requires temporarily shutting down or reconfiguring the network.</li>
+                        </ul>
+                    </div>
+                    <button class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" onclick="openModal('ringTopology')">
+                        Learn More
+                    </button>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20241028175715256679/Untitled-Diagram-153-1.jpg" alt="Ring Topology" class="rounded-lg shadow-md w-full max-w-xs md:max-w-full h-auto object-contain" onerror="this.onerror=null;this.src='https://placehold.co/400x250/cbd5e1/1e293b?text=Ring-Topology';">
+                </div>
+            </div>
+
+            <!-- Mesh Topology -->
+            <div class="bg-gray-50 p-6 rounded-lg shadow-md mb-8 flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-3">5. Mesh Topology 🕸️</h3>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        Designed for maximum redundancy and reliability. Each device in the network is connected to <strong class="text-indigo-600">every other device</strong>. This creates multiple possible paths for data to travel.
+                    </p>
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800">Advantages:</h4>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li><strong class="font-medium">High fault tolerance and reliability:</strong> If one link fails, data can simply take another path.</li>
+                            <li>High security with dedicated links.</li>
+                            <li>High data transmission speed due to direct connections.</li>
+                        </ul>
+                    </div>
+                    <div class="mb-4">
+                        <h4 class="font-semibold text-gray-800">Disadvantages:</h4>
+                        <ul class="list-disc list-inside text-gray-700">
+                            <li><strong class="font-medium">Complex and expensive:</strong> Requires a large number of cables and connections, costly to implement and manage.</li>
+                            <li>Difficult to install due to extensive cabling.</li>
+                        </ul>
+                    </div>
+                    <button class="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105" onclick="openModal('meshTopology')">
+                        Learn More
+                    </button>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <img src="https://media.geeksforgeeks.org/wp-content/uploads/20241028174648312121/Mesh-Topology.png" alt="Mesh Topology" class="rounded-lg shadow-md w-full max-w-xs md:max-w-full h-auto object-contain" onerror="this.onerror=null;this.src='https://placehold.co/400x250/cbd5e1/1e293b?text=Mesh-Topology';">
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="w-full max-w-4xl bg-gray-800 text-white shadow-lg rounded-xl p-6 mt-8 text-center">
+        <p class="text-sm">
+            © SirLavz2025 | RONALD T. LAVA, MSIT | College of Computing Studies | Laguna University
+        </p>
+    </footer>
+
+    <!-- Generic Modal Structure -->
+    <div id="infoModal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center p-4 hidden z-50">
+        <div class="bg-white rounded-lg shadow-xl p-8 max-w-lg w-full transform transition-all scale-95 duration-300 ease-out">
+            <div class="flex justify-between items-center mb-6 border-b pb-3">
+                <h3 id="modalTitle" class="text-2xl font-bold text-gray-800">Topology Details</h3>
+                <button class="text-gray-500 hover:text-gray-700 text-3xl leading-none" onclick="closeModal()">&times;</button>
+            </div>
+            <div id="modalContent" class="text-gray-700 leading-relaxed space-y-4">
+                <!-- Content will be injected here by JavaScript -->
+            </div>
+            <div class="mt-8 text-right">
+                <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-full shadow transition duration-300 ease-in-out" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Modal Functionality -->
+    <script>
+        const modal = document.getElementById('infoModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalContent = document.getElementById('modalContent');
+
+        const topologyDetails = {
+            pointToPoint: {
+                title: "Point-to-Point Topology Details",
+                content: `
+                    <p>The **Point-to-Point** topology is the most fundamental network connection. It establishes a dedicated, isolated link between two endpoints, ensuring direct communication without intermediaries.</p>
+                    <h4 class="font-semibold text-gray-800 mt-4">Key Characteristics:</h4>
+                    <ul class="list-disc list-inside">
+                        <li>Direct, dedicated link between exactly two devices.</li>
+                        <li>No sharing of the communication channel with other devices.</li>
+                        <li>High bandwidth utilization for the connected devices.</li>
+                    </ul>
+                    <h4 class="font-semibold text-gray-800 mt-4">Typical Use Cases:</h4>
+                    <ul class="list-disc list-inside">
+                        <li>Connecting a computer to a printer directly.</li>
+                        <li>Dedicated leased lines for Wide Area Networks (WANs) between two specific locations.</li>
+                        <li>USB or HDMI connections between devices.</li>
+                    </ul>
+                `
+            },
+            busTopology: {
+                title: "Bus Topology Details",
+                content: `
+                    <p>In a **Bus Topology**, all network devices are connected to a single central cable, known as the backbone. Data signals travel along this shared cable, and each device 'l
+istens' for data addressed to it. Terminators at both ends of the cable prevent signal reflection, which could cause interference.</p>
+                    <h4 class="font-semibold text-gray-800 mt-4">Advantages Recap:</h4>
+                    <ul class="list-disc list-inside">
+                        <li>**Cost-Effective:** Less cabling required compared to other topologies.</li>
+                        <li>**Simple Installation:** Easy to set up for small networks.</li>
+                    </ul>
+                    <h4 class="font-semibold text-gray-800 mt-4">Disadvantages Recap:</h4>
+                    <ul class="list-disc list-inside">
+                        <li>**Single Point of Failure:** If the backbone cable breaks, the entire network fails.</li>
+                        <li>**Difficult Troubleshooting:** Identifying cable faults can be time-consuming.</li>
+                        <li>**Performance Degradation:** Network performance slows down with increased traffic and more connected devices due to signal collisions.</li>
+                        <li>**Limited Cable Length:** The total length of the backbone cable is limited.</li>
+                    </ul>
+                `
+            },
+            starTopology: {
+                title: "Star Topology Details",
+                content: `
+                    <p>The **Star Topology** is characterized by all network devices connecting individually to a central hub, switch, or router. This central device acts as a control point, mediating communication between all connected nodes.</p>
+                    <h4 class="font-semibold text-gray-800 mt-4">Advantages Recap:</h4>
+                    <ul class="list-disc list-inside">
+                        <li>**Easy to Manage:** Simple to add, remove, or reconfigure devices without affecting the rest of the network.</li>
+                        <li>**Fault Isolation:** A failure in one connection or device only impacts that specific device, not the entire network.</li>
+                        <li>**Centralized Control:** Simplifies network monitoring and troubleshooting.</li>
+                        <li>**Better Performance:** Generally offers better performance than bus or ring for individual connections.</li>
+                    </ul>
+                    <h4 class="font-semibold text-gray-800 mt-4">Disadvantages Recap:</h4>
+                    <ul class="list-disc list-inside">
+                        <li>**Single Point of Failure:** The central device (hub/switch) is critical; if it fails, the entire network goes down.</li>
+                        <li>**Higher Cabling Cost:** Requires more cable compared to a bus topology, as each device needs its own dedicated cable run to the central point.</li>
+                        <li>**Scalability Limit:** The number of devices is limited by the number of ports on the central device.</li>
+                    </ul>
+                `
+            },
+            ringTopology: {
+                title: "Ring Topology Details",
+                content: `
+                    <p>In a **Ring Topology**, each device is connected to exactly two other devices, forming a continuous circular path. Data flows in a single direction around the ring. Access to the network is often managed by a 'token,' which circulates around the ring, granting permission to transmit data to the device holding it.</p>
+                    <h4 class="font-semibold text-gray-800 mt-4">Advantages Recap:</h4>
+                    <ul class="list-disc list-inside">
+                        <li>**Orderly Data Flow:** The token-passing mechanism prevents data collisions, leading to efficient data transfer under moderate to heavy loads.</li>
+                        <li>**Simple Cable Management:** Fewer cable runs are typically needed compared to a star topology.</li>
+                        <li>**Deterministic Access:** Guarantees that each device gets a turn to transmit data.</li>
+                    </ul>
+                    <h4 class="font-semibold text-gray-800 mt-4">Disadvantages Recap:</h4>
+                    <ul class="list-disc list-inside">
+                        <li>**Single Point of Failure:** A break in any single cable or the failure of any device can disrupt the entire network.</li>
+                        <li>**Difficulty in Adding/Removing Devices:** Requires temporarily breaking the ring and reconfiguring, which can disrupt network operation.</li>
+                        <li>**Troubleshooting:** Can be challenging to locate a fault without specialized tools.</li>
+                    </ul>
+                `
+            },
+            meshTopology: {
+                title: "Mesh Topology Details",
+                content: `
+                    <p>The **Mesh Topology** offers the highest level of redundancy and reliability. In a full mesh configuration, every device in the network is connected directly to every other device, creating multiple independent paths for data transmission.</p>
+                    <h4 class="font-semibold text-gray-800 mt-4">Advantages Recap:</h4>
+                    <ul class="list-disc list-inside">
+                        <li>**High Fault Tolerance:** Extremely robust; if one link fails, data can automatically reroute through alternative paths.</li>
+                        <li>**High Reliability:** Ideal for critical applications where continuous network availability is paramount.</li>
+                        <li>**High Security:** Dedicated links can offer enhanced privacy for point-to-point communications.</li>
+                        <li>**High Throughput:** Direct links can provide very fast data transmission between specific nodes.</li>
+                        <li>**Easy Troubleshooting:** Faults can often be isolated quickly.</li>
+                    </ul>
+                    <h4 class="font-semibold text-gray-800 mt-4">Disadvantages Recap:</h4>
+                    <ul class="list-disc list-inside">
+                        <li>**Complex and Expensive:** Requires a vast amount of cabling and numerous ports on devices, making it very costly to implement and manage.</li>
+                        <li>**Difficult Installation:** The extensive and intricate cabling can be very challenging to set up.</li>
+                        <li>**Scalability Issues:** Adding new devices significantly increases the number of required connections (N*(N-1)/2 links for N nodes).</li>
+                    </ul>
+                `
+            }
+        };
+
+        function openModal(topologyKey) {
+            const details = topologyDetails[topologyKey];
+            if (details) {
+                modalTitle.innerHTML = details.title;
+                modalContent.innerHTML = details.content;
+                modal.classList.remove('hidden');
+                setTimeout(() => { // Small delay for animation
+                    modal.querySelector('.transform').classList.remove('scale-95');
+                    modal.querySelector('.transform').classList.add('scale-100');
+                }, 50);
+            }
+        }
+
+        function closeModal() {
+            modal.querySelector('.transform').classList.remove('scale-100');
+            modal.querySelector('.transform').classList.add('scale-95');
+            setTimeout(() => { // Hide after animation
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Close modal if clicking outside
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+
+</body>
+</html>
