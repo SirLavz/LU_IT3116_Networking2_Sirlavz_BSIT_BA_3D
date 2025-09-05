@@ -1,0 +1,399 @@
+ <!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT 3116 - Network Cabling Lab</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Libraries for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- Chosen Palette: Warm Neutral Tech -->
+    <!-- Application Structure Plan: The application is structured as an interactive, single-page guide that mirrors the logical flow of the original lab report. A persistent navigation bar allows users to jump to key sections: Introduction, Procedures (with tabs for Straight-Through and Crossover), and an Interactive Assessment. This structure was chosen because a lab activity is inherently procedural. The interactive diagrams within the procedure tabs enhance learning by visualizing the core task (wiring), and the interactive assessment provides immediate feedback, making it a more effective learning tool than a static document. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: T568A & T568B color codes. Goal: Organize/Inform. Viz/Presentation: Interactive HTML/CSS diagrams. Interaction: On hover, pin details are highlighted. Justification: Visualizing the pinouts is crucial for learning. An interactive diagram is more engaging and informative than a static image. Library/Method: Vanilla JS + Tailwind CSS.
+        - Report Info: Step-by-step procedures. Goal: Guide. Viz/Presentation: Tabbed content sections. Interaction: User clicks tabs to switch between cable types. Justification: Tabs organize the two main tasks cleanly, preventing clutter and focusing the user on one procedure at a time. Library/Method: Vanilla JS.
+        - Report Info: Assessment questions. Goal: Test Knowledge. Viz/Presentation: Interactive quiz/form elements. Interaction: Users can click "Reveal Answer" buttons to check their understanding. Justification: Provides immediate, self-paced feedback, reinforcing learning concepts from the lab. Library/Method: Vanilla JS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F7F4;
+            color: #2c3e50;
+        }
+        .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #3b82f6;
+            border-bottom-color: #3b82f6;
+        }
+        .tab-btn {
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .tab-btn.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+        .pin-highlight {
+            transition: transform 0.2s ease-in-out;
+        }
+        .pin-highlight:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+        .answer-box {
+            width: 100%;
+            height: 100px;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            resize: vertical;
+            background-color: #f9fafb;
+            color: #1f2937;
+            font-size: 0.875rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .answer-box:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+        }
+        .info-input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            background-color: #f9fafb;
+            color: #1f2937;
+            font-size: 0.875rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .info-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <h1 class="text-xl font-bold text-gray-800">IT 3116 - Networking 2<br>Performance Task 1.0 Network Cabling</h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#introduction" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 border-b-2 border-transparent">Introduction</a>
+                        <a href="#procedures" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 border-b-2 border-transparent">Procedures</a>
+                        <a href="#assessment" class="nav-link px-3 py-2 rounded-md text-sm font-medium text-gray-700 border-b-2 border-transparent">Assessment</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+
+        <section id="introduction" class="mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800 border-b-2 border-blue-500 pb-2">I. Introduction & Objectives</h2>
+            <p class="mb-8 text-gray-600">This interactive guide covers the fundamental skills of network cabling. You will learn to construct and test the two most common types of Ethernet cables: straight-through and crossover. Mastering this skill is essential for any networking professional for setting up and troubleshooting wired networks.</p>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-700">Learning Objectives</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1">&#10003;</span><span>Identify UTP cable components and understand T568A/T568B wiring standards.</span></li>
+                        <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1">&#10003;</span><span>Construct functional straight-through and crossover cables.</span></li>
+                        <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1">&#10003;</span><span>Properly use essential network cabling tools like crimpers and testers.</span></li>
+                        <li class="flex items-start"><span class="text-blue-500 mr-3 mt-1">&#10003;</span><span>Test cables for continuity and correct pinout.</span></li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-700">Tools & Materials</h3>
+                    <ul class="space-y-3 text-gray-600">
+                        <li class="flex items-center"><span class="text-2xl mr-3">&#128279;</span> CAT5e or CAT6 UTP Cable</li>
+                        <li class="flex items-center"><span class="text-2xl mr-3">&#128268;</span> RJ-45 Connectors</li>
+                        <li class="flex items-center"><span class="text-2xl mr-3">&#128296;</span> Crimping Tool & Cable Stripper</li>
+                        <li class="flex items-center"><span class="text-2xl mr-3">&#128270;</span> LAN Cable Tester</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="procedures" class="mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800 border-b-2 border-blue-500 pb-2">V. Interactive Procedures</h2>
+            <p class="mb-8 text-gray-600">This section provides a hands-on guide to creating both straight-through and crossover cables. Use the tabs below to switch between the procedures. Pay close attention to the interactive wiring diagrams to master the color codes.</p>
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="mb-6 border-b border-gray-200">
+                    <nav class="-mb-px flex space-x-4" aria-label="Tabs">
+                        <button id="tab-straight" class="tab-btn active whitespace-nowrap py-3 px-5 border-b-2 font-medium text-sm rounded-t-lg">
+                            Part 1: Straight-Through Cable
+                        </button>
+                        <button id="tab-crossover" class="tab-btn whitespace-nowrap py-3 px-5 border-b-2 font-medium text-sm text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-t-lg">
+                            Part 2: Crossover Cable
+                        </button>
+                    </nav>
+                </div>
+
+                <div id="content-straight">
+                    <div class="grid lg:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4 text-gray-700">Straight-Through Construction (T568B)</h3>
+                            <ol class="list-decimal list-inside space-y-4 text-gray-600">
+                                <li><strong class="font-semibold text-gray-700">Preparation:</strong> Carefully strip about 1 inch (2.5 cm) of the outer jacket from the cable end.</li>
+                                <li><strong class="font-semibold text-gray-700">Arrange Wires:</strong> Untwist and straighten the wires. Arrange them in the T568B sequence shown in the diagram.</li>
+                                <li><strong class="font-semibold text-gray-700">Trim & Insert:</strong> Pinch the wires, trim them to a uniform length (~0.5 inch), and slide them fully into an RJ-45 connector. Ensure the jacket is also inside the connector for strain relief.</li>
+                                <li><strong class="font-semibold text-gray-700">Crimp & Test:</strong> Place the connector in the crimping tool and squeeze firmly. Repeat for the other end using the same T568B standard. Test with a LAN tester for a 1-to-1 pinout.</li>
+                            </ol>
+                        </div>
+                        <div class="wiring-diagram-container" data-standard="T568B">
+                            <h4 class="text-lg font-semibold text-center mb-2">T568B Wiring Standard</h4>
+                            <div class="bg-gray-800 text-white p-2 rounded-t-lg text-center font-mono text-sm">RJ-45 Connector (Clip Down)</div>
+                            <div class="flex justify-center bg-gray-100 p-4 rounded-b-lg shadow-inner">
+                            </div>
+                            <p class="text-center text-sm text-gray-500 mt-2">Hover over a pin to see details</p>
+                            <div class="mt-4 text-center p-2 rounded-md bg-blue-100 text-blue-800 border border-blue-200">
+                                <p class="font-semibold">Use Case:</p>
+                                <p>Connecting different devices, like a PC to a Switch.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="content-crossover" class="hidden">
+                     <div class="grid lg:grid-cols-1 gap-8">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-4 text-gray-700">Crossover Construction (T568A to T568B)</h3>
+                            <ol class="list-decimal list-inside space-y-4 text-gray-600">
+                                <li><strong class="font-semibold text-gray-700">Prepare First End (T568B):</strong> Follow the complete procedure for a straight-through cable to terminate one end using the T568B standard.</li>
+                                <li><strong class="font-semibold text-gray-700">Prepare Second End (T568A):</strong> On the other end, arrange the wires according to the T568A standard shown in its diagram.</li>
+                                <li><strong class="font-semibold text-gray-700">Crimp Second End:</strong> Trim, insert, and firmly crimp the T568A end.</li>
+                                <li><strong class="font-semibold text-gray-700">Test the Cable:</strong> Use a LAN tester. The lights will show a "crossed" pattern for pairs 2 and 3 (pins 1, 2, 3, 6).</li>
+                            </ol>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-8 mt-4">
+                             <div class="wiring-diagram-container" data-standard="T568A">
+                                <h4 class="text-lg font-semibold text-center mb-2">End 1: T568A Standard</h4>
+                                <div class="bg-gray-800 text-white p-2 rounded-t-lg text-center font-mono text-sm">RJ-45 Connector</div>
+                                <div class="flex justify-center bg-gray-100 p-4 rounded-b-lg shadow-inner">
+                                </div>
+                                <p class="text-center text-sm text-gray-500 mt-2">Hover over a pin</p>
+                             </div>
+                             <div class="wiring-diagram-container" data-standard="T568B">
+                                <h4 class="text-lg font-semibold text-center mb-2">End 2: T568B Standard</h4>
+                                <div class="bg-gray-800 text-white p-2 rounded-t-lg text-center font-mono text-sm">RJ-45 Connector</div>
+                                <div class="flex justify-center bg-gray-100 p-4 rounded-b-lg shadow-inner">
+                                </div>
+                                <p class="text-center text-sm text-gray-500 mt-2">Hover over a pin</p>
+                             </div>
+                        </div>
+                         <div class="mt-6 text-center p-2 rounded-md bg-green-100 text-green-800 border border-green-200">
+                                <p class="font-semibold">Use Case:</p>
+                                <p>Connecting similar devices, like a PC to another PC directly.</p>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="assessment" class="scroll-mt-20">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800 border-b-2 border-blue-500 pb-2">V. Assessment / Lab Report</h2>
+            <p class="mb-8 text-gray-600">Test your knowledge with the questions below. This section helps you solidify the concepts learned during the hands-on procedure. Type your answers in the boxes provided.</p>
+            <div id="assessmentContent" class="space-y-6">
+                 <!-- New section for student information -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-4 text-gray-700">Student Information</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="font-semibold text-gray-800">Group Name:</p>
+                            <input type="text" id="groupName" class="info-input mt-2" placeholder="Enter your group name...">
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-800">Members:</p>
+                            <textarea id="members" class="answer-box mt-2" placeholder="List the names of all group members, separated by a comma."></textarea>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of new section -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <p class="font-semibold text-gray-800">1. What is the main difference between a straight-through and a crossover cable in terms of wiring and function?</p>
+                    <textarea class="answer-box mt-2" placeholder="Type your answer here..."></textarea>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <p class="font-semibold text-gray-800">2. Why is it important to keep the wire pairs twisted as much as possible, up to the point of termination?</p>
+                    <textarea class="answer-box mt-2" placeholder="Type your answer here..."></textarea>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <p class="font-semibold text-gray-800">3. What is the one major difference in the color sequence between T568A and T568B?</p>
+                    <textarea class="answer-box mt-2" placeholder="Type your answer here..."></textarea>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-md">
+                    <p class="font-semibold text-gray-800">4. If a cable tester shows that pin 1 on one end connects to pin 2 on the other, what is the most likely error?</p>
+                    <textarea class="answer-box mt-2" placeholder="Type your answer here..."></textarea>
+                </div>
+            </div>
+            <div class="mt-8 text-center">
+                 <button id="downloadPdfBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg transform transition-transform duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                    Download Report as PDF
+                </button>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer class="bg-white mt-16 border-t">
+        <div class="container mx-auto py-4 px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
+            <p>SirLavz2025 | RONALD T. LAVA, MSIT | COLLEGE OF COMPUTING STUDIES | LAGUNA UNIVERSITY</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabs = [
+                { btn: document.getElementById('tab-straight'), content: document.getElementById('content-straight') },
+                { btn: document.getElementById('tab-crossover'), content: document.getElementById('content-crossover') }
+            ];
+
+            tabs.forEach(tab => {
+                tab.btn.addEventListener('click', () => {
+                    tabs.forEach(t => {
+                        t.btn.classList.remove('active');
+                        t.content.classList.add('hidden');
+                    });
+                    tab.btn.classList.add('active');
+                    tab.content.classList.remove('hidden');
+                });
+            });
+
+            const standards = {
+                T568A: [
+                    { pin: 1, color: 'White/Green', colorHex: '#a7d9a9', stripeHex: '#ffffff' },
+                    { pin: 2, color: 'Green', colorHex: '#228B22', stripeHex: '#228B22' },
+                    { pin: 3, color: 'White/Orange', colorHex: '#ffcba4', stripeHex: '#ffffff' },
+                    { pin: 4, color: 'Blue', colorHex: '#0000FF', stripeHex: '#0000FF' },
+                    { pin: 5, color: 'White/Blue', colorHex: '#add8e6', stripeHex: '#ffffff' },
+                    { pin: 6, color: 'Orange', colorHex: '#FFA500', stripeHex: '#FFA500' },
+                    { pin: 7, color: 'White/Brown', colorHex: '#d2b48c', stripeHex: '#ffffff' },
+                    { pin: 8, color: 'Brown', colorHex: '#A52A2A', stripeHex: '#A52A2A' }
+                ],
+                T568B: [
+                    { pin: 1, color: 'White/Orange', colorHex: '#ffcba4', stripeHex: '#ffffff' },
+                    { pin: 2, color: 'Orange', colorHex: '#FFA500', stripeHex: '#FFA500' },
+                    { pin: 3, color: 'White/Green', colorHex: '#a7d9a9', stripeHex: '#ffffff' },
+                    { pin: 4, color: 'Blue', colorHex: '#0000FF', stripeHex: '#0000FF' },
+                    { pin: 5, color: 'White/Blue', colorHex: '#add8e6', stripeHex: '#ffffff' },
+                    { pin: 6, color: 'Green', colorHex: '#228B22', stripeHex: '#228B22' },
+                    { pin: 7, color: 'White/Brown', colorHex: '#d2b48c', stripeHex: '#ffffff' },
+                    { pin: 8, color: 'Brown', colorHex: '#A52A2A', stripeHex: '#A52A2A' }
+                ]
+            };
+            
+            function createWiringDiagram(container, standardData) {
+                const diagramHolder = container.querySelector('.flex');
+                diagramHolder.innerHTML = '';
+                standardData.forEach(wire => {
+                    const isStriped = wire.color.includes('/');
+                    const wireDiv = document.createElement('div');
+                    wireDiv.className = 'pin-highlight relative w-8 h-32 border-l border-r border-gray-300 flex flex-col items-center';
+                    
+                    let backgroundStyle;
+                    if (isStriped) {
+                         backgroundStyle = `linear-gradient(45deg, ${wire.stripeHex} 48%, ${wire.colorHex.replace('a4', 'a9').replace('d9','e6')} 52%)`;
+                    } else {
+                        backgroundStyle = wire.colorHex;
+                    }
+
+                    wireDiv.innerHTML = `
+                        <div class="w-full h-full" style="background: ${backgroundStyle};"></div>
+                        <div class="absolute -bottom-6 text-xs font-mono">${wire.pin}</div>
+                        <div class="absolute -top-12 text-center text-xs p-1 bg-gray-700 text-white rounded-md opacity-0 pointer-events-none transition-opacity duration-300" style="width: 80px;">
+                            Pin ${wire.pin}<br>${wire.color}
+                        </div>
+                    `;
+                    diagramHolder.appendChild(wireDiv);
+
+                    wireDiv.addEventListener('mouseenter', () => {
+                        wireDiv.querySelector('.absolute.-top-12').style.opacity = '1';
+                    });
+                    wireDiv.addEventListener('mouseleave', () => {
+                        wireDiv.querySelector('.absolute.-top-12').style.opacity = '0';
+                    });
+                });
+            }
+
+            document.querySelectorAll('.wiring-diagram-container').forEach(container => {
+                const standard = container.dataset.standard;
+                createWiringDiagram(container, standards[standard]);
+            });
+
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section');
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 80) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // --- PDF Generation Logic ---
+            const downloadPdfBtn = document.getElementById('downloadPdfBtn');
+            downloadPdfBtn.addEventListener('click', () => {
+                const assessmentContent = document.getElementById('assessmentContent');
+
+                // Using html2canvas to capture the content as a canvas
+                html2canvas(assessmentContent, {
+                    scale: 2, // Higher scale for better resolution in the PDF
+                    logging: true,
+                    useCORS: true
+                }).then(canvas => {
+                    // Initialize jsPDF
+                    const { jsPDF } = window.jspdf;
+                    const doc = new jsPDF('p', 'mm', 'a4'); // 'p' for portrait, 'mm' for millimeters, 'a4' page size
+
+                    // Calculate dimensions to fit the canvas on the A4 page
+                    const imgData = canvas.toDataURL('image/png');
+                    const imgWidth = 210; // A4 width in mm
+                    const pageHeight = doc.internal.pageSize.getHeight();
+                    const imgHeight = canvas.height * imgWidth / canvas.width;
+                    let heightLeft = imgHeight;
+                    let position = 0;
+
+                    // Add the image to the PDF
+                    doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                    heightLeft -= pageHeight;
+
+                    // If the content is taller than one page, add more pages
+                    while (heightLeft >= 0) {
+                        position = heightLeft - imgHeight;
+                        doc.addPage();
+                        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                        heightLeft -= pageHeight;
+                    }
+
+                    // Save the PDF file
+                    doc.save('Network_Cabling_Lab_Report.pdf');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
