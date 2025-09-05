@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -358,9 +358,39 @@
             const downloadPdfBtn = document.getElementById('downloadPdfBtn');
             downloadPdfBtn.addEventListener('click', () => {
                 const assessmentContent = document.getElementById('assessmentContent');
+                
+                // Create a temporary container for PDF content
+                const pdfContentContainer = document.createElement('div');
+                pdfContentContainer.style.width = '210mm'; // A4 width
+                pdfContentContainer.style.padding = '10mm';
+
+                // Create the header for the PDF
+                const pdfHeader = document.createElement('div');
+                const now = new Date();
+                const formattedDate = now.toLocaleString('en-US', {
+                    month: 'long',
+                    day: 'numeric',
+                    year: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric'
+                });
+                pdfHeader.innerHTML = `
+                    <h2 style="font-size: 18px; font-weight: bold; margin-bottom: 5px;">IT 3116 Networking 2</h2>
+                    <h1 style="font-size: 24px; font-weight: bold; margin-bottom: 5px;">Assessment / Lab Report</h1>
+                    <p style="font-size: 14px; color: #6b7280; margin-bottom: 20px;">Generated on: ${formattedDate}</p>
+                    <hr style="border-top: 2px solid #3b82f6; margin-bottom: 20px;">
+                `;
+                pdfContentContainer.appendChild(pdfHeader);
+                
+                // Clone the assessment content and append to the temporary container
+                const clonedAssessmentContent = assessmentContent.cloneNode(true);
+                pdfContentContainer.appendChild(clonedAssessmentContent);
+
+                // Temporarily add the container to the document body to be captured by html2canvas
+                document.body.appendChild(pdfContentContainer);
 
                 // Using html2canvas to capture the content as a canvas
-                html2canvas(assessmentContent, {
+                html2canvas(pdfContentContainer, {
                     scale: 2, // Higher scale for better resolution in the PDF
                     logging: true,
                     useCORS: true
@@ -391,6 +421,9 @@
 
                     // Save the PDF file
                     doc.save('Network_Cabling_Lab_Report.pdf');
+
+                    // Remove the temporary container from the document body
+                    document.body.removeChild(pdfContentContainer);
                 });
             });
         });
